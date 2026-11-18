@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher Dashboard & UGC Studio | Trees Mandarin</title>
+  <meta name="description" content="Manage Mandarin classes, assign automated Trees Pinyin voice homework, analyze student tone errors, publish co-created stories, and track PayPal commissions." />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #15803d;
+      --primary-hover: #166534;
+      --primary-light: #dcfce7;
+      --gold: #d97706;
+      --gold-bg: #fef3c7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --accent: #2563eb;
+      --accent-bg: #dbeafe;
+      --radius-pill: 9999px;
+      --radius-card: 20px;
+      --shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 12px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      position: sticky;
+      top: 14px;
+      z-index: 100;
+      max-width: 1180px;
+      margin: 14px auto 0;
+      padding: 0 16px;
+    }
+
+    .nav-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 10px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .btn-pill {
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    /* Top Tutor Summary Banner */
+    .tutor-banner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .tutor-identity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .avatar-lg {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 850;
+      font-size: 1.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .kpi-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .kpi-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .kpi-val {
+      font-size: 1.75rem;
+      font-weight: 850;
+      color: var(--text);
+    }
+
+    .kpi-sub {
+      font-size: 0.8rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 4px;
+    }
+
+    /* Module Sub-Navigation */
+    .sub-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .sub-tab {
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.9rem;
+      font-weight: 700;
+      background: var(--card);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .sub-tab.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    /* Card Blocks */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 26px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-header h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 22px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .form-input, .form-textarea, .form-select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.92rem;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .form-textarea {
+      min-height: 84px;
+      resize: vertical;
+    }
+
+    .form-input:focus, .form-textarea:focus, .form-select:focus {
+      border-color: var(--primary);
+    }
+
+    /* Phonics Preview Box */
+    .tp-preview-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .tp-preview-line {
+      font-size: 1.05rem;
+      font-weight: 800;
+      font-style: italic;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    /* Tables & Grading Lists */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    .data-table th, .data-table td {
+      padding: 12px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table th {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .tone-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 9px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      margin-right: 4px;
+    }
+
+    .tone-green {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .tone-yellow {
+      background: var(--gold-bg);
+      color: var(--gold);
+    }
+
+    .tone-red {
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+
+    /* Error Radar Bars */
+    .radar-item {
+      margin-bottom: 14px;
+    }
+
+    .radar-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .radar-track {
+      height: 10px;
+      background: #f1f5f9;
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+    }
+
+    .radar-fill {
+      height: 100%;
+      border-radius: var(--radius-pill);
+      background: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="nav-capsule">
+      <a href="/" class="brand">
+        <span class="brand-icon">🌳</span>
+        <span>Trees Mandarin</span>
+      </a>
+      <div class="nav-links">
+        <a href="/" class="nav-link">Tutor Directory</a>
+        <a href="/cert.html" class="nav-link">Certification Center</a>
+        <a href="/teacher.html" class="nav-link active">Teacher Dashboard</a>
+        <a href="/student.html" class="nav-link">Student Workspace</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Tutor Profile & Referral Bar -->
+    <div class="tutor-banner">
+      <div class="tutor-identity">
+        <div class="avatar-lg" id="bannerInitials">ML</div>
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+            <h1 style="font-size:1.4rem; font-weight:850;" id="bannerName">Mei-Ling Lin</h1>
+            <span class="tone-chip tone-yellow" id="bannerTier">🏆 Gold Certified Tutor</span>
+          </div>
+          <div style="font-size:0.86rem; color:var(--muted); margin-top:2px;">
+            Class Invite Code: <strong style="color:var(--text);" id="bannerClassCode">TREES-888</strong> •
+            Referral Link: <code style="background:#f1f5f9; padding:2px 8px; border-radius:6px; font-weight:700;" id="bannerRefUrl">https://treesmandarin.com/student.html?ref=tutor_lin01</code>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button class="btn-pill btn-outline" onclick="copyReferralLink()">📋 Copy Referral Link</button>
+        <a href="#ugc" class="btn-pill btn-primary">+ Publish Story / Comic (+100 Pts)</a>
+      </div>
+    </div>
+
+    <!-- Top KPI Analytics -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Contribution Score</div>
+        <div class="kpi-val" id="kpiPoints">1,420 pts</div>
+        <div class="kpi-sub">Directory Rank: #1 Globally</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Active Subscribed Students</div>
+        <div class="kpi-val" id="kpiStudents">18</div>
+        <div class="kpi-sub">100% using official Student Pass</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Class Voice Accuracy Avg</div>
+        <div class="kpi-val">91.4%</div>
+        <div class="kpi-sub">+6.2% improvement this month</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">PayPal Commission Balance</div>
+        <div class="kpi-val" id="kpiCommission">$184.50</div>
+        <div class="kpi-sub">25% C-End + 20% School B2B</div>
+      </div>
+    </div>
+
+    <!-- Quick Section Jumps -->
+    <div class="sub-tabs">
+      <a href="#homework" class="sub-tab active">1. Class & Homework Builder</a>
+      <a href="#grading" class="sub-tab">2. Voice Grading & Error Radar</a>
+      <a href="#ugc" class="sub-tab">3. Co-Created Library Studio (UGC)</a>
+      <a href="#partner" class="sub-tab">4. PayPal Payouts & School Referrals</a>
+    </div>
+
+    <!-- MODULE 1: Class Management & One-Click Homework Generator -->
+    <div class="card" id="homework">
+      <div class="card-header">
+        <div>
+          <h2>1. One-Click Trees Pinyin Homework Builder</h2>
+          <p style="font-size:0.86rem; color:var(--muted);">Assign reading and voice-scoring homework to your class. The system automatically generates verified 63-rule Trees Pinyin.</p>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <span style="font-size:0.82rem; font-weight:700; color:var(--muted);">Class Code:</span>
+          <input type="text" id="classCodeInput" class="form-input" value="TREES-888" style="width:130px; padding:6px 10px; font-weight:800;" />
+          <button class="btn-pill btn-outline" onclick="generateNewClassCode()">🔄 New Code</button>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="form-group">
+            <label>Load Preset Curriculum or Enter Custom Sentences</label>
+            <select id="hwPreset" class="form-select" onchange="loadHomeworkPreset()">
+              <option value="0">Preset 1: Daily Greeting & Shopping (你好！請問這個多少錢？)</option>
+              <option value="1">Preset 2: Tang Poetry - Li Bai Quiet Night Thought (舉頭望明月)</option>
+              <option value="2">Preset 3: Three Character Classic Opening (人之初，性本善)</option>
+              <option value="3">Preset 4: Ode to the Goose (鵝，鵝，鵝，曲項向天歌)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Assignment Title</label>
+            <input type="text" id="hwTitle" class="form-input" value="Week 1: Daily Greeting & Tone 3-4 Drill" />
+          </div>
+
+          <div class="form-group">
+            <label>Chinese Text (Simplified or Traditional)</label>
+            <textarea id="hwChinese" class="form-textarea" oninput="autoTranscribeHomework()">你好！請問這個多少錢？</textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Idiomatic English Translation</label>
+            <input type="text" id="hwEnglish" class="form-input" value="Hello! Excuse me, how much is this?" />
+          </div>
+        </div>
+
+        <div>
+          <label style="display:block; font-size:0.84rem; font-weight:700; margin-bottom:6px;">
+            Auto-Generated Trees Pinyin Preview (Locked 63-Rule Engine)
+          </label>
+          <div class="tp-preview-box">
+            <div class="tp-preview-line" id="hwTpPreview">Nee3 h-ow3! Ching3-wen4 jer4 ge dwo-sh-ow3 ch-yen2?</div>
+            <div style="font-size:1.2rem; font-weight:800; margin:4px 0;" id="hwHzPreview">你好！請問這個多少錢？</div>
+            <div style="font-size:0.84rem; color:var(--muted);" id="hwEnPreview">Hello! Excuse me, how much is this?</div>
+          </div>
+
+          <div class="form-group">
+            <label>Target Minimum Voice Passing Score</label>
+            <select id="hwMinScore" class="form-select">
+              <option value="80">80% (Standard Comprehension Target)</option>
+              <option value="85" selected>85% (Recommended Phonics & Tone Mastery)</option>
+              <option value="90">90% (Honor / Gold Badge Challenge)</option>
+            </select>
+          </div>
+
+          <button class="btn-pill btn-primary" onclick="assignHomeworkToClass()" style="width:100%; padding:12px; margin-top:6px;">
+            🚀 Assign Homework to Class & Sync to Student Workspace
+          </button>
+
+          <div style="margin-top:16px;">
+            <div style="font-size:0.82rem; font-weight:800; color:var(--muted); text-transform:uppercase; margin-bottom:8px;">
+              Active Class Assignments (<span id="activeHwCount">2</span>)
+            </div>
+            <div id="activeHwList" style="display:flex; flex-direction:column; gap:8px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 2: Voice Homework Grading & Class Error Analytics Radar -->
+    <div class="card" id="grading">
+      <div class="card-header">
+        <div>
+          <h2>2. Student Voice Submissions & Error Analytics Radar</h2>
+          <p style="font-size:0.86rem; color:var(--muted);">Review AI-scored student recordings with green/yellow/red character feedback and tone correction arrows (e.g., 4→3).</p>
+        </div>
+        <a href="/student.html" class="btn-pill btn-outline">Preview Student Practice View ↗</a>
+      </div>
+
+      <div class="two-col">
+        <!-- Student Submissions Table -->
+        <div>
+          <h3 style="font-size:1rem; font-weight:800; margin-bottom:12px;">Recent Voice Submissions</h3>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Assignment</th>
+                <th>AI Score & Tone Feedback</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="submissionsTableBody"></tbody>
+          </table>
+        </div>
+
+        <!-- Class-Wide Error Analytics Radar -->
+        <div>
+          <h3 style="font-size:1rem; font-weight:800; margin-bottom:12px;">Class Weak-Spot & Tone Error Radar</h3>
+          <div style="background:#f8fafc; border:1px solid var(--border); border-radius:16px; padding:18px;">
+            <div class="radar-item">
+              <div class="radar-head">
+                <span>Tone 3 Dip & Sandhi (e.g., Nee3 h-ow3 / Ching3)</span>
+                <span style="color:var(--danger);">34% Error Rate</span>
+              </div>
+              <div class="radar-track"><div class="radar-fill" style="width:34%; background:var(--danger);"></div></div>
+            </div>
+
+            <div class="radar-item">
+              <div class="radar-head">
+                <span>Hyphen Diphthong Glides (ch-yen2 / dwo-sh-ow3)</span>
+                <span style="color:var(--gold);">22% Error Rate</span>
+              </div>
+              <div class="radar-track"><div class="radar-fill" style="width:22%; background:var(--gold);"></div></div>
+            </div>
+
+            <div class="radar-item">
+              <div class="radar-head">
+                <span>Retroflex "jr / jer4" vs "dz / ts" Distinction</span>
+                <span style="color:var(--gold);">18% Error Rate</span>
+              </div>
+              <div class="radar-track"><div class="radar-fill" style="width:18%; background:var(--gold);"></div></div>
+            </div>
+
+            <div class="radar-item" style="margin-bottom:0;">
+              <div class="radar-head">
+                <span>Initial Phonics Replacement (q→ch, x→sh)</span>
+                <span style="color:var(--primary);">96% Mastery</span>
+              </div>
+              <div class="radar-track"><div class="radar-fill" style="width:96%; background:var(--primary);"></div></div>
+            </div>
+
+            <div style="margin-top:16px; padding-top:12px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <span style="font-size:0.82rem; color:var(--muted);">Auto-collected into students' Smart Error Books</span>
+              <button class="btn-pill btn-outline" style="padding:5px 12px; font-size:0.78rem;" onclick="assignRemedialDrill()">+ Assign Remedial Tone 3 Drill</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 3: Co-Created Bilingual Library Studio (UGC) -->
+    <div class="card" id="ugc">
+      <div class="card-header">
+        <div>
+          <h2>3. Tutor Co-Created Bilingual Library Studio (+80 to +120 Pts)</h2>
+          <p style="font-size:0.86rem; color:var(--muted);">Contribute public domain stories, Aesop's Fables, or original 4-panel mnemonic comics. Every published work includes your name and a direct "Learn with Me" booking link.</p>
+        </div>
+        <span class="tone-chip tone-green">Auto-Enforced 63-Rule Phonics</span>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div class="form-group">
+            <label>Contribution Category</label>
+            <select id="ugcCategory" class="form-select">
+              <option value="Public Domain Classic (+80 Pts)">Public Domain Classic • Tang Poetry / Idiom Story (+80 Pts)</option>
+              <option value="Aesop’s Fables Adaptation (+80 Pts)">Aesop’s Fables Bilingual Adaptation (+80 Pts)</option>
+              <option value="4-Panel Mnemonic Comic (+120 Pts)">Original 4-Panel Character Mnemonic Comic (+120 Pts)</option>
+              <option value="Situational Micro-Lesson (+80 Pts)">Daily Situational Dialogue Micro-Lesson (+80 Pts)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Story / Comic Title (Bilingual)</label>
+            <input type="text" id="ugcTitle" class="form-input" placeholder="e.g., The Fox and the Grapes (狐狸與葡萄)" value="Ode to the Goose (詠鵝 - 駱賓王)" />
+          </div>
+
+          <div class="form-group">
+            <label>Chinese Text (Public Domain or 100% Original)</label>
+            <textarea id="ugcChinese" class="form-textarea" oninput="updateUgcPhonicsPreview()">鵝，鵝，鵝，曲項向天歌。白毛浮綠水，紅掌撥清波。</textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Idiomatic English Translation</label>
+            <textarea id="ugcEnglish" class="form-textarea">Goose, goose, goose, curving its neck to sing to the sky. White feathers float on green water, red webbed feet paddle clear waves.</textarea>
+          </div>
+        </div>
+
+        <div>
+          <label style="display:block; font-size:0.84rem; font-weight:700; margin-bottom:6px;">
+            Deterministic Trees Pinyin Annotation & Attribution Card Preview
+          </label>
+          <div class="tp-preview-box">
+            <div style="font-size:0.75rem; font-weight:700; color:var(--accent); text-transform:uppercase;" id="ugcPrevType">Public Domain Classic (+80 Pts)</div>
+            <div style="font-size:1.1rem; font-weight:800; margin:4px 0 8px;" id="ugcPrevTitle">Ode to the Goose (詠鵝 - 駱賓王)</div>
+            <div class="tp-preview-line" id="ugcPrevTp">Er2, er2, er2, chyu sh-yong4 t-yen g-er. Bai2 m-ow2 foo2 lyu4 shway3, hong2 jong3 bwo ching bwo.</div>
+            <div style="font-weight:700; margin:6px 0;" id="ugcPrevHz">鵝，鵝，鵝，曲項向天歌。白毛浮綠水，紅掌撥清波。</div>
+            <div style="font-size:0.82rem; color:var(--muted);" id="ugcPrevEn">Goose, goose, goose, curving its neck to sing to the sky...</div>
+            <div style="margin-top:10px; padding-top:8px; border-top:1px solid var(--border); font-size:0.8rem; display:flex; justify-content:space-between;">
+              <span>Contributed by <strong id="ugcPrevAuthor">Mei-Ling Lin</strong></span>
+              <span style="color:var(--primary); font-weight:700;">[Book a Lesson with Tutor →]</span>
+            </div>
+          </div>
+
+          <div style="background:#f8fafc; border:1px solid var(--border); border-radius:12px; padding:12px; margin-bottom:14px; font-size:0.8rem; color:#334155;">
+            <label style="display:flex; align-items:flex-start; gap:8px; cursor:pointer;">
+              <input type="checkbox" id="chkUgcLicense" style="margin-top:3px; width:16px; height:16px;" />
+              <span>
+                <strong>Contributor License Agreement:</strong> I warrant that this submission is either in the public domain or my 100% original creation (no third-party copyrighted images/characters). I retain author attribution while granting Trees Mandarin a worldwide, perpetual, irrevocable, royalty-free commercial license to publish, adapt, and compile this work into digital libraries and print anthologies.
+              </span>
+            </label>
+          </div>
+
+          <button class="btn-pill btn-primary" onclick="submitUgcContribution()" style="width:100%; padding:12px;">
+            📚 Publish to Global Bilingual Library & Claim Contribution Points
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 4: PayPal Payouts Commission Ledger & School Referral B2B Portal -->
+    <div class="card" id="partner">
+      <div class="card-header">
+        <div>
+          <h2>4. Affiliate Commissions, PayPal Payouts & School Outreach (B2B)</h2>
+          <p style="font-size:0.86rem; color:var(--muted);">Earn 25% recurring commission on referred students and 20% first-year contract commission on referred K-12 schools.</p>
+        </div>
+        <button class="btn-pill btn-outline" onclick="exportPayPalCsv()">📥 Export PayPal Payouts CSV</button>
+      </div>
+
+      <div class="two-col">
+        <!-- PayPal Settings & Commission Ledger -->
+        <div>
+          <h3 style="font-size:1rem; font-weight:800; margin-bottom:12px;">PayPal Payouts Settings & Monthly Ledger</h3>
+          <div style="display:flex; gap:8px; margin-bottom:14px;">
+            <input type="email" id="paypalEmailInput" class="form-input" value="meiling.tutor@example.com" placeholder="Your PayPal Email" />
+            <button class="btn-pill btn-primary" onclick="savePayPalEmail()">Save PayPal</button>
+          </div>
+          <p style="font-size:0.8rem; color:var(--muted); margin-bottom:12px;">
+            Payout policy: Commissions clear after a 30-day refund protection hold and are batch-disbursed monthly via PayPal Payouts once your balance reaches $50.00 USD.
+          </p>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Referral Source</th>
+                <th>Type</th>
+                <th>Commission</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="commissionTableBody">
+              <tr>
+                <td>2026-11-15</td>
+                <td>18 Subscribed Students (`?ref`)</td>
+                <td>25% Recurring</td>
+                <td><strong>$31.50</strong></td>
+                <td><span class="tone-chip tone-green">Cleared</span></td>
+              </tr>
+              <tr>
+                <td>2026-11-10</td>
+                <td>Oakwood Bilingual Academy</td>
+                <td>20% School License</td>
+                <td><strong>$153.00</strong></td>
+                <td><span class="tone-chip tone-green">Cleared</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- B2B School & Heritage Program Referral Form -->
+        <div>
+          <h3 style="font-size:1rem; font-weight:800; margin-bottom:12px;">Register a K-12 School or Immersion Program Referral (20% Commission)</h3>
+          <div class="form-group">
+            <label>School or Institution Name</label>
+            <input type="text" id="schoolName" class="form-input" placeholder="e.g., Lincoln Middle School / Bay Area Heritage Chinese" />
+          </div>
+          <div class="form-group">
+            <label>Principal / Language Department Contact Email</label>
+            <input type="email" id="schoolContact" class="form-input" placeholder="principal@school.edu" />
+          </div>
+          <div class="form-group">
+            <label>Estimated Student Count & Program Notes</label>
+            <input type="text" id="schoolNotes" class="form-input" placeholder="e.g., 120 students in 6th-8th grade Mandarin elective" />
+          </div>
+          <button class="btn-pill btn-primary" onclick="registerSchoolLead()" style="width:100%; padding:11px;">
+            🏫 Lock In School Referral Lead (+150 Bonus Pts on Activation)
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Deterministic Client-Side Trees Pinyin Phrase & Character Mapper
+    const PHRASE_DICTIONARY = [
+      { hz: '你好', tp: 'Nee3 h-ow3' },
+      { hz: '請問', tp: 'Ching3-wen4' },
+      { hz: '请问', tp: 'Ching3-wen4' },
+      { hz: '這個', tp: 'jer4 ge' },
+      { hz: '这个', tp: 'jer4 ge' },
+      { hz: '多少錢', tp: 'dwo-sh-ow3 ch-yen2' },
+      { hz: '多少钱', tp: 'dwo-sh-ow3 ch-yen2' },
+      { hz: '舉頭望明月', tp: 'Jyu3 t-oh2 wong4 ming2 yweh4' },
+      { hz: '举头望明月', tp: 'Jyu3 t-oh2 wong4 ming2 yweh4' },
+      { hz: '低頭思故鄉', tp: 'dee t-oh2 s goo4-sh-yong' },
+      { hz: '低头思故乡', tp: 'dee t-oh2 s goo4-sh-yong' },
+      { hz: '人之初', tp: 'Ren2 jr ch-oo' },
+      { hz: '性本善', tp: 'shing4 ben3 shan4' },
+      { hz: '性相近', tp: 'shing4 sh-yong jin4' },
+      { hz: '習相遠', tp: 'shee2 sh-yong ywen3' },
+      { hz: '习相远', tp: 'shee2 sh-yong ywen3' },
+      { hz: '鵝，鵝，鵝', tp: 'Er2, er2, er2' },
+      { hz: '鹅，鹅，鹅', tp: 'Er2, er2, er2' },
+      { hz: '曲項向天歌', tp: 'chyu sh-yong4 t-yen g-er' },
+      { hz: '曲项向天歌', tp: 'chyu sh-yong4 t-yen g-er' },
+      { hz: '白毛浮綠水', tp: 'Bai2 m-ow2 foo2 lyu4 shway3' },
+      { hz: '白毛浮绿水', tp: 'Bai2 m-ow2 foo2 lyu4 shway3' },
+      { hz: '紅掌撥清波', tp: 'hong2 jong3 bwo ching bwo' },
+      { hz: '红掌拨清波', tp: 'hong2 jong3 bwo ching bwo' },
+      { hz: '謝謝', tp: 'Sh-yeh4-sh-yeh' },
+      { hz: '谢谢', tp: 'Sh-yeh4-sh-yeh' }
+    ];
+
+    function convertToTreesPinyin(text) {
+      let result = text;
+      PHRASE_DICTIONARY.forEach(item => {
+        result = result.split(item.hz).join(item.tp + ' ');
+      });
+      result = result
+        .replace(/！/g, '! ')
+        .replace(/？/g, '? ')
+        .replace(/，/g, ', ')
+        .replace(/。/g, '. ');
+      return result.trim();
+    }
+
+    // Tutor State Initialization
+    let tutorProfile = {
+      id: 'tutor_lin01',
+      name: 'Mei-Ling Lin',
+      paypal: 'meiling.tutor@example.com',
+      contributionScore: 1420,
+      tier: 'Gold',
+      classCode: 'TREES-888'
+    };
+
+    function loadTutorSession() {
+      const saved = localStorage.getItem('tm_certified_tutor');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          tutorProfile = { ...tutorProfile, ...parsed };
+        } catch (e) {}
+      }
+      const initials = tutorProfile.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+      document.getElementById('bannerInitials').textContent = initials;
+      document.getElementById('bannerName').textContent = tutorProfile.name;
+      document.getElementById('bannerTier').textContent = tutorProfile.contributionScore >= 800
+        ? '🏆 Gold Certified Tutor'
+        : '🥈 Silver Certified Tutor';
+      document.getElementById('bannerRefUrl').textContent = `https://treesmandarin.com/student.html?ref=${tutorProfile.id}`;
+      document.getElementById('kpiPoints').textContent = `${tutorProfile.contributionScore.toLocaleString()} pts`;
+      document.getElementById('paypalEmailInput').value = tutorProfile.paypal || '';
+      document.getElementById('ugcPrevAuthor').textContent = tutorProfile.name;
+    }
+
+    function copyReferralLink() {
+      const url = document.getElementById('bannerRefUrl').textContent;
+      navigator.clipboard.writeText(url);
+      alert(`Copied your 25% commission referral link:\n${url}`);
+    }
+
+    function generateNewClassCode() {
+      const code = `TREES-${Math.floor(100 + Math.random() * 900)}`;
+      document.getElementById('classCodeInput').value = code;
+      document.getElementById('bannerClassCode').textContent = code;
+      tutorProfile.classCode = code;
+    }
+
+    // Module 1: Homework Preset & Builder
+    const HW_PRESETS = [
+      {
+        title: 'Week 1: Daily Greeting & Tone 3-4 Drill',
+        hz: '你好！請問這個多少錢？',
+        en: 'Hello! Excuse me, how much is this?'
+      },
+      {
+        title: 'Week 2: Li Bai Classical Poetry - Quiet Night Thought',
+        hz: '舉頭望明月，低頭思故鄉。',
+        en: 'Looking up at the bright moon, bowing my head thinking of home.'
+      },
+      {
+        title: 'Week 3: Three Character Classic Reading Aloud',
+        hz: '人之初，性本善。性相近，習相遠。',
+        en: 'People at birth are naturally good; their natures are much the same.'
+      },
+      {
+        title: 'Week 4: Tang Poetry - Ode to the Goose (詠鵝)',
+        hz: '鵝，鵝，鵝，曲項向天歌。白毛浮綠水，紅掌撥清波。',
+        en: 'Goose, goose, goose, curving its neck to sing to the sky.'
+      }
+    ];
+
+    let activeAssignments = [
+      {
+        id: 'hw_101',
+        title: 'Week 1: Daily Greeting & Tone 3-4 Drill',
+        hz: '你好！請問這個多少錢？',
+        tp: 'Nee3 h-ow3! Ching3-wen4 jer4 ge dwo-sh-ow3 ch-yen2?',
+        en: 'Hello! Excuse me, how much is this?',
+        minScore: 85
+      },
+      {
+        id: 'hw_102',
+        title: 'Week 2: Li Bai Classical Poetry - Quiet Night Thought',
+        hz: '舉頭望明月，低頭思故鄉。',
+        tp: 'Jyu3 t-oh2 wong4 ming2 yweh4, dee t-oh2 s goo4-sh-yong.',
+        en: 'Looking up at the bright moon, bowing my head thinking of home.',
+        minScore: 85
+      }
+    ];
+
+    function loadHomeworkPreset() {
+      const idx = parseInt(document.getElementById('hwPreset').value, 10);
+      const p = HW_PRESETS[idx];
+      document.getElementById('hwTitle').value = p.title;
+      document.getElementById('hwChinese').value = p.hz;
+      document.getElementById('hwEnglish').value = p.en;
+      autoTranscribeHomework();
+    }
+
+    function autoTranscribeHomework() {
+      const hz = document.getElementById('hwChinese').value.trim();
+      const en = document.getElementById('hwEnglish').value.trim();
+      const tp = convertToTreesPinyin(hz);
+      document.getElementById('hwTpPreview').textContent = tp;
+      document.getElementById('hwHzPreview').textContent = hz;
+      document.getElementById('hwEnPreview').textContent = en;
+    }
+
+    function assignHomeworkToClass() {
+      const title = document.getElementById('hwTitle').value.trim();
+      const hz = document.getElementById('hwChinese').value.trim();
+      const en = document.getElementById('hwEnglish').value.trim();
+      const tp = document.getElementById('hwTpPreview').textContent;
+      const minScore = parseInt(document.getElementById('hwMinScore').value, 10);
+
+      if (!title || !hz) return;
+
+      const newHw = {
+        id: `hw_${Date.now()}`,
+        title,
+        hz,
+        tp,
+        en,
+        minScore,
+        classCode: document.getElementById('classCodeInput').value
+      };
+
+      activeAssignments.unshift(newHw);
+      localStorage.setItem('tm_class_assignments', JSON.stringify(activeAssignments));
+      renderActiveAssignments();
+      alert(`Homework "${title}" assigned to Class ${newHw.classCode} and synced to Student Workspace!`);
+    }
+
+    function renderActiveAssignments() {
+      document.getElementById('activeHwCount').textContent = activeAssignments.length;
+      const list = document.getElementById('activeHwList');
+      list.innerHTML = activeAssignments.map(a => `
+        <div style="background:#f8fafc; border:1px solid var(--border); border-radius:10px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center; gap:8px;">
+          <div>
+            <div style="font-weight:800; font-size:0.86rem;">${a.title}</div>
+            <div style="font-size:0.8rem; color:var(--primary); font-style:italic; font-weight:700;">${a.tp}</div>
+          </div>
+          <span class="tone-chip tone-green">Target: ${a.minScore}%+</span>
+        </div>
+      `).join('');
+    }
+
+    // Module 2: Student Voice Grading Table
+    const SUBMISSIONS = [
+      {
+        student: 'Ethan Miller',
+        hw: 'Daily Greeting & Shopping',
+        score: 94,
+        feedback: [
+          { ch: '你', tone: 'green', note: '✓' },
+          { ch: '好', tone: 'green', note: '✓' },
+          { ch: '請', tone: 'yellow', note: '3→2' },
+          { ch: '問', tone: 'green', note: '✓' }
+        ]
+      },
+      {
+        student: 'Sophia Davis',
+        hw: 'Li Bai Quiet Night Thought',
+        score: 89,
+        feedback: [
+          { ch: '舉', tone: 'green', note: '✓' },
+          { ch: '頭', tone: 'green', note: '✓' },
+          { ch: '望', tone: 'red', note: '4→1' },
+          { ch: '明', tone: 'green', note: '✓' }
+        ]
+      },
+      {
+        student: 'Lucas Rodriguez',
+        hw: 'Three Character Classic',
+        score: 96,
+        feedback: [
+          { ch: '人', tone: 'green', note: '✓' },
+          { ch: '之', tone: 'green', note: '✓' },
+          { ch: '初', tone: 'green', note: '✓' },
+          { ch: '善', tone: 'green', note: '✓' }
+        ]
+      }
+    ];
+
+    function renderSubmissions() {
+      const tbody = document.getElementById('submissionsTableBody');
+      tbody.innerHTML = SUBMISSIONS.map((s, idx) => `
+        <tr>
+          <td><strong>${s.student}</strong></td>
+          <td>${s.hw}</td>
+          <td>
+            <div style="font-weight:800; margin-bottom:4px;">${s.score}%</div>
+            <div>
+              ${s.feedback.map(f => `<span class="tone-chip tone-${f.tone}">${f.ch} ${f.note}</span>`).join('')}
+            </div>
+          </td>
+          <td>
+            <button class="btn-pill btn-outline" style="padding:4px 10px; font-size:0.78rem;" onclick="approveSubmission(${idx})">✓ Approve</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function approveSubmission(idx) {
+      alert(`Approved voice score for ${SUBMISSIONS[idx].student}. Feedback synced to Student Workspace.`);
+    }
+
+    function assignRemedialDrill() {
+      document.getElementById('hwTitle').value = 'Remedial Drill: Tone 3 Dip & Sandhi Mastery';
+      document.getElementById('hwChinese').value = '你好！請問舉頭望明月。';
+      document.getElementById('hwEnglish').value = 'Hello! Excuse me, looking up at the bright moon.';
+      autoTranscribeHomework();
+      document.getElementById('homework').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Module 3: UGC Co-Created Library Studio
+    function updateUgcPhonicsPreview() {
+      const cat = document.getElementById('ugcCategory').value;
+      const title = document.getElementById('ugcTitle').value.trim();
+      const hz = document.getElementById('ugcChinese').value.trim();
+      const en = document.getElementById('ugcEnglish').value.trim();
+      const tp = convertToTreesPinyin(hz);
+
+      document.getElementById('ugcPrevType').textContent = cat;
+      document.getElementById('ugcPrevTitle').textContent = title;
+      document.getElementById('ugcPrevTp').textContent = tp;
+      document.getElementById('ugcPrevHz').textContent = hz;
+      document.getElementById('ugcPrevEn').textContent = en;
+    }
+
+    function submitUgcContribution() {
+      const agreed = document.getElementById('chkUgcLicense').checked;
+      if (!agreed) {
+        alert('Please check the Contributor License Agreement confirming Public Domain or 100% Original status before publishing.');
+        return;
+      }
+      const cat = document.getElementById('ugcCategory').value;
+      const pts = cat.includes('120') ? 120 : 80;
+      tutorProfile.contributionScore += pts;
+      localStorage.setItem('tm_certified_tutor', JSON.stringify(tutorProfile));
+      document.getElementById('kpiPoints').textContent = `${tutorProfile.contributionScore.toLocaleString()} pts`;
+      alert(`Published! +${pts} Contribution Points added to your directory ranking.`);
+    }
+
+    // Module 4: PayPal Payouts CSV Exporter & School Lead Registration
+    function savePayPalEmail() {
+      const email = document.getElementById('paypalEmailInput').value.trim();
+      if (!email) return;
+      tutorProfile.paypal = email;
+      localStorage.setItem('tm_certified_tutor', JSON.stringify(tutorProfile));
+      alert(`PayPal Payouts email updated to: ${email}`);
+    }
+
+    function registerSchoolLead() {
+      const school = document.getElementById('schoolName').value.trim();
+      const contact = document.getElementById('schoolContact').value.trim();
+      if (!school || !contact) {
+        alert('Please enter both the School Name and Contact Email.');
+        return;
+      }
+      const tbody = document.getElementById('commissionTableBody');
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${new Date().toISOString().split('T')[0]}</td>
+        <td>${school} (B2B Lead)</td>
+        <td>20% School License</td>
+        <td><strong>Pending Quote</strong></td>
+        <td><span class="tone-chip tone-yellow">Registered</span></td>
+      `;
+      tbody.prepend(tr);
+      document.getElementById('schoolName').value = '';
+      document.getElementById('schoolContact').value = '';
+      document.getElementById('schoolNotes').value = '';
+      alert(`School referral "${school}" locked under your Tutor ID (${tutorProfile.id}). You will receive 20% of the first-year campus license!`);
+    }
+
+    function exportPayPalCsv() {
+      const email = document.getElementById('paypalEmailInput').value.trim() || 'tutor@example.com';
+      const csvContent = [
+        'Recipient Email,Amount,Currency,Customer ID,Note',
+        `${email},184.50,USD,${tutorProfile.id},"Trees Mandarin Tutor & School Affiliate Payout"`
+      ].join('\n');
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `paypal_payouts_${tutorProfile.id}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadTutorSession();
+      renderActiveAssignments();
+      renderSubmissions();
+    });
+  </script>
+</body>
+</html>

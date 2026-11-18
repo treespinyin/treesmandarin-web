@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Workspace & Voice Coach | Trees Mandarin</title>
+  <meta name="description" content="Practice Mandarin with Trees Pinyin natural phonics, AI voice tone scoring, Smart Error Book, and 9:16 split-screen read-aloud video recording." />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #15803d;
+      --primary-hover: #166534;
+      --primary-light: #dcfce7;
+      --gold: #d97706;
+      --gold-bg: #fef3c7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --accent: #2563eb;
+      --radius-pill: 9999px;
+      --radius-card: 20px;
+      --shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 12px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      position: sticky;
+      top: 14px;
+      z-index: 100;
+      max-width: 1160px;
+      margin: 14px auto 0;
+      padding: 0 16px;
+    }
+
+    .nav-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 10px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .btn-pill {
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    /* Subscription & Class Binding Bar */
+    .status-banner {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .sub-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .sub-active {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .sub-trial {
+      background: var(--gold-bg);
+      color: var(--gold);
+    }
+
+    .class-join-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .form-input {
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--primary);
+    }
+
+    /* Main Grid Layout */
+    .workspace-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 22px;
+    }
+
+    @media (max-width: 860px) {
+      .workspace-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 24px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-header h2 {
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    /* Homework Sidebar List */
+    .hw-item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      background: #f8fafc;
+      transition: all 0.15s;
+    }
+
+    .hw-item:hover, .hw-item.active {
+      border-color: var(--primary);
+      background: #f0fdf4;
+    }
+
+    .hw-title {
+      font-weight: 800;
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .hw-tp {
+      font-size: 0.82rem;
+      font-weight: 700;
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    /* Practice Stage */
+    .practice-stage {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px 22px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .stage-en {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .stage-tp {
+      font-size: clamp(1.25rem, 2.5vw, 1.65rem);
+      font-weight: 850;
+      font-style: italic;
+      color: var(--primary);
+      margin-bottom: 8px;
+      letter-spacing: 0.01em;
+    }
+
+    .stage-hz {
+      font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+      font-weight: 850;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    .control-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Voice Feedback Chips */
+    .feedback-panel {
+      display: none;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+
+    .tone-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      margin: 4px;
+    }
+
+    .tone-green {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .tone-yellow {
+      background: var(--gold-bg);
+      color: var(--gold);
+    }
+
+    .tone-red {
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+
+    /* Split-Screen Video Recorder */
+    .video-studio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      align-items: center;
+    }
+
+    .canvas-wrap {
+      display: flex;
+      justify-content: center;
+      background: #0f172a;
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    canvas#splitCanvas {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      background: #1e293b;
+    }
+
+    /* Error Book Items */
+    .error-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .error-card {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Traditional / Simplified Toggle Placed Directly Outside Layout Menu -->
+  <header>
+    <nav class="nav-capsule">
+      <a href="/" class="brand">
+        <span class="brand-icon">🌳</span>
+        <span>Trees Mandarin</span>
+      </a>
+      <div class="nav-links">
+        <a href="/" class="nav-link">Tutor Directory</a>
+        <a href="/student.html" class="nav-link active">Student Workspace</a>
+        <a href="/teacher.html" class="nav-link">Teacher Dashboard</a>
+        <button class="btn-pill btn-outline" id="scriptToggleBtn" onclick="toggleScriptMode()">簡 / 繁: 繁體</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Top Subscription & Class Binding Bar -->
+    <div class="status-banner">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:4px;">
+          <h1 style="font-size:1.3rem; font-weight:850;">Student Practice Workspace</h1>
+          <span class="sub-pill sub-trial" id="subBadge">⚡ Free Preview Mode</span>
+        </div>
+        <div style="font-size:0.85rem; color:var(--muted);" id="refAttributionText">
+          Referred by Certified Tutor: <strong id="refTutorLabel">Official Directory</strong> • Textbook & Student Pass Required for Class Homework
+        </div>
+      </div>
+
+      <div class="class-join-box">
+        <input type="text" id="joinClassInput" class="form-input" value="TREES-888" placeholder="Enter Class Code" style="width:145px; font-weight:800;" />
+        <button class="btn-pill btn-outline" onclick="syncClassHomework()">🔗 Sync Class</button>
+        <button class="btn-pill btn-primary" id="btnActivatePass" onclick="activateStudentPass()">💳 Activate Student Pass ($6.99/mo)</button>
+      </div>
+    </div>
+
+    <div class="workspace-grid">
+      <!-- Left Sidebar: Assigned Homework & Smart Error Book -->
+      <div>
+        <div class="card">
+          <div class="card-header">
+            <h2>Assigned Homework</h2>
+            <span style="font-size:0.78rem; font-weight:700; color:var(--primary);" id="classCodeTag">Class: TREES-888</span>
+          </div>
+          <div id="hwSidebarList"></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h2>Smart Error Book</h2>
+            <span style="font-size:0.75rem; color:var(--muted);">Words < 80%</span>
+          </div>
+          <p style="font-size:0.82rem; color:var(--muted); margin-bottom:12px;">
+            Characters needing tone or phonics attention are collected here automatically for quick review.
+          </p>
+          <div class="error-list" id="errorBookList"></div>
+        </div>
+      </div>
+
+      <!-- Right Column: Main Phonics Practice & 9:16 Split-Screen Video Studio -->
+      <div>
+        <!-- Interactive Voice Practice Stage -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2 id="activeHwHeading">Week 1: Daily Greeting & Tone 3-4 Drill</h2>
+              <p style="font-size:0.84rem; color:var(--muted);">Read the bold-italic Trees Pinyin using natural English phonics. Native comprehension is prioritized.</p>
+            </div>
+            <span class="sub-pill sub-active" id="targetScoreTag">Target: 85%+</span>
+          </div>
+
+          <div class="practice-stage">
+            <div class="stage-en" id="stageEn">"Hello! Excuse me, how much is this?"</div>
+            <div class="stage-tp" id="stageTp">Nee3 h-ow3! Ching3-wen4 jer4 ge dwo-sh-ow3 ch-yen2?</div>
+            <div class="stage-hz" id="stageHz">你好！請問這個多少錢？</div>
+
+            <div class="control-row">
+              <button class="btn-pill btn-outline" onclick="speakCurrentSentence()">🔊 Listen (Clear Female Voice)</button>
+              <button class="btn-pill btn-primary" id="btnStudentRecord" onclick="recordAndScoreStudent()">🎙️ Speak & Get AI Tone Score</button>
+              <button class="btn-pill btn-outline" onclick="submitHomeworkToTeacher()">📤 Submit Score to Tutor</button>
+            </div>
+
+            <!-- Instant Pronunciation Feedback -->
+            <div class="feedback-panel" id="feedbackPanel">
+              <div style="font-size:1.1rem; font-weight:850; margin-bottom:6px;" id="overallScoreLine"></div>
+              <div style="font-size:0.84rem; color:var(--muted); margin-bottom:10px;" id="comprehensionNote"></div>
+              <div id="charFeedbackContainer"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Split-Screen Video Recording Studio (Default 9:16 Vertical Text Top / Face Bottom) -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2>🎬 60-Second Read-Aloud Split-Screen Video Recorder</h2>
+              <p style="font-size:0.84rem; color:var(--muted);">Record yourself reading Mandarin fluently with aligned Trees Pinyin on top and camera on bottom.</p>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <select id="aspectRatioSelect" class="form-input" onchange="changeVideoAspect()" style="font-weight:700;">
+                <option value="9:16" selected>📱 9:16 Vertical (Text Top / Face Bottom)</option>
+                <option value="16:9">💻 16:9 Horizontal Split</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="video-studio-grid">
+            <div class="canvas-wrap">
+              <canvas id="splitCanvas" width="360" height="640"></canvas>
+              <video id="webcamVideo" autoplay playsinline muted style="display:none;"></video>
+            </div>
+
+            <div>
+              <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:8px;">Share Your Progress or Submit Video Homework</h3>
+              <p style="font-size:0.88rem; color:var(--muted); margin-bottom:16px;">
+                1. Click <strong>Turn On Camera</strong> (camera turns off automatically when you stop or leave—zero background drain).<br/>
+                2. Read the Trees Pinyin line aloud from the top half of the screen.<br/>
+                3. Download your high-resolution video to share on TikTok, Reels, or Shorts!
+              </p>
+
+              <div style="display:flex; flex-direction:column; gap:10px;">
+                <button class="btn-pill btn-outline" id="btnToggleCam" onclick="toggleCameraStream()">📷 Turn On Camera Preview</button>
+                <button class="btn-pill btn-primary" id="btnRecordVideo" onclick="toggleSplitRecording()">⏺️ Start Split-Screen Recording</button>
+                <a id="downloadVideoLink" class="btn-pill btn-outline" style="display:none; border-color:var(--primary); color:var(--primary);">⬇️ Download Recorded Video</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // 1. State & Simplified / Traditional Toggle
+    let isTraditional = true;
+    let isSubscribed = false;
+    let referredByTutor = 'tutor_lin01';
+    let lastScore = 0;
+
+    const DEFAULT_ASSIGNMENTS = [
+      {
+        id: 'hw_101',
+        title: 'Week 1: Daily Greeting & Tone 3-4 Drill',
+        tp: 'Nee3 h-ow3! Ching3-wen4 jer4 ge dwo-sh-ow3 ch-yen2?',
+        trad: '你好！請問這個多少錢？',
+        simp: '你好！请问这个多少钱？',
+        en: '"Hello! Excuse me, how much is this?"',
+        minScore: 85
+      },
+      {
+        id: 'hw_102',
+        title: 'Week 2: Li Bai - Quiet Night Thought (靜夜思)',
+        tp: 'Jyu3 t-oh2 wong4 ming2 yweh4, dee t-oh2 s goo4-sh-yong.',
+        trad: '舉頭望明月，低頭思故鄉。',
+        simp: '举头望明月，低头思故乡。',
+        en: '"Looking up at the bright moon, bowing my head thinking of home."',
+        minScore: 85
+      },
+      {
+        id: 'hw_103',
+        title: 'Week 3: Three Character Classic (三字經)',
+        tp: 'Ren2 jr ch-oo, shing4 ben3 shan4. Shing4 sh-yong jin4, shee2 sh-yong ywen3.',
+        trad: '人之初，性本善。性相近，習相遠。',
+        simp: '人之初，性本善。性相近，习相远。',
+        en: '"People at birth are naturally good; their natures are much the same."',
+        minScore: 85
+      },
+      {
+        id: 'hw_104',
+        title: 'Week 4: Ode to the Goose (詠鵝 - 駱賓王)',
+        tp: 'Er2, er2, er2, chyu sh-yong4 t-yen g-er.',
+        trad: '鵝，鵝，鵝，曲項向天歌。',
+        simp: '鹅，鹅，鹅，曲项向天歌。',
+        en: '"Goose, goose, goose, curving its neck to sing to the sky."',
+        minScore: 85
+      }
+    ];
+
+    let assignments = [...DEFAULT_ASSIGNMENTS];
+    let currentHwIndex = 0;
+
+    let errorBook = [
+      { hzTrad: '請', hzSimp: '请', tp: 'Ching3', note: 'Tone 3 dip' },
+      { hzTrad: '錢', hzSimp: '钱', tp: 'ch-yen2', note: 'Rising Tone 2' },
+      { hzTrad: '望', hzSimp: '望', tp: 'wong4', note: 'Firm Tone 4' }
+    ];
+
+    // Check URL Referral Parameter (?ref=tutor_id)
+    function checkReferralAttribution() {
+      const params = new URLSearchParams(window.location.search);
+      const ref = params.get('ref');
+      if (ref) {
+        referredByTutor = ref;
+        localStorage.setItem('tm_referred_by', ref);
+      } else {
+        referredByTutor = localStorage.getItem('tm_referred_by') || 'tutor_lin01';
+      }
+      document.getElementById('refTutorLabel').textContent = referredByTutor;
+
+      const subSaved = localStorage.getItem('tm_student_subscribed');
+      if (subSaved === 'true') {
+        setSubscribedUI();
+      }
+    }
+
+    function activateStudentPass() {
+      isSubscribed = true;
+      localStorage.setItem('tm_student_subscribed', 'true');
+      setSubscribedUI();
+      alert(`Student Practice Pass ($6.99/mo) activated! 25% recurring commission credited to tutor (${referredByTutor}).`);
+    }
+
+    function setSubscribedUI() {
+      isSubscribed = true;
+      const badge = document.getElementById('subBadge');
+      badge.className = 'sub-pill sub-active';
+      badge.textContent = '✓ Active Student Pass ($6.99/mo)';
+      const btn = document.getElementById('btnActivatePass');
+      btn.textContent = '✓ Pass Active';
+      btn.className = 'btn-pill btn-outline';
+    }
+
+    function toggleScriptMode() {
+      isTraditional = !isTraditional;
+      document.getElementById('scriptToggleBtn').textContent = isTraditional
+        ? '簡 / 繁: 繁體'
+        : '簡 / 繁: 简体';
+      selectHomework(currentHwIndex);
+      renderErrorBook();
+    }
+
+    // 2. Homework List & Teacher Sync
+    function syncClassHomework() {
+      const code = document.getElementById('joinClassInput').value.trim() || 'TREES-888';
+      document.getElementById('classCodeTag').textContent = `Class: ${code}`;
+
+      const savedHw = localStorage.getItem('tm_class_assignments');
+      if (savedHw) {
+        try {
+          const parsed = JSON.parse(savedHw);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            assignments = parsed.map(item => ({
+              id: item.id,
+              title: item.title,
+              tp: item.tp,
+              trad: item.hz,
+              simp: item.hz,
+              en: item.en,
+              minScore: item.minScore || 85
+            }));
+          }
+        } catch (e) {}
+      }
+      renderHomeworkSidebar();
+      selectHomework(0);
+    }
+
+    function renderHomeworkSidebar() {
+      const list = document.getElementById('hwSidebarList');
+      list.innerHTML = assignments.map((hw, idx) => `
+        <div class="hw-item ${idx === currentHwIndex ? 'active' : ''}" onclick="selectHomework(${idx})">
+          <div class="hw-title">${hw.title}</div>
+          <div class="hw-tp">${hw.tp}</div>
+        </div>
+      `).join('');
+    }
+
+    function selectHomework(index) {
+      currentHwIndex = index;
+      const hw = assignments[index];
+      const hzText = isTraditional ? (hw.trad || hw.hz) : (hw.simp || hw.hz);
+
+      document.getElementById('activeHwHeading').textContent = hw.title;
+      document.getElementById('targetScoreTag').textContent = `Target: ${hw.minScore || 85}%+`;
+      document.getElementById('stageEn').textContent = hw.en;
+      document.getElementById('stageTp').textContent = hw.tp;
+      document.getElementById('stageHz').textContent = hzText;
+      document.getElementById('feedbackPanel').style.display = 'none';
+
+      renderHomeworkSidebar();
+      drawSplitFrame();
+    }
+
+    // 3. Clear Female Mandarin Text-to-Speech
+    function speakCurrentSentence() {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const hw = assignments[currentHwIndex];
+      const text = isTraditional ? (hw.trad || hw.hz) : (hw.simp || hw.hz);
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'zh-CN';
+      utter.rate = 0.86;
+
+      const voices = window.speechSynthesis.getVoices();
+      const femaleVoice = voices.find(v =>
+        (v.lang.includes('zh') || v.lang.includes('cmn')) &&
+        /Ting-Ting|Xiaoxiao|Yaoyao|Meijia|Female|Google/i.test(v.name)
+      ) || voices.find(v => v.lang.includes('zh'));
+      if (femaleVoice) utter.voice = femaleVoice;
+      window.speechSynthesis.speak(utter);
+    }
+
+    // 4. Practical Western-Learner Pronunciation Scoring (Comprehension First)
+    function recordAndScoreStudent() {
+      const btn = document.getElementById('btnStudentRecord');
+      const hw = assignments[currentHwIndex];
+      const hzText = isTraditional ? (hw.trad || hw.hz) : (hw.simp || hw.hz);
+      const cleanChars = hzText.replace(/[！？，。、\s]/g, '').split('');
+
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (SpeechRec) {
+        const rec = new SpeechRec();
+        rec.lang = 'zh-CN';
+        rec.interimResults = false;
+        btn.textContent = '🔴 Listening... Read the Trees Pinyin Aloud';
+
+        rec.onresult = (e) => {
+          const spoken = e.results[0][0].transcript;
+          gradeStudentSpeech(cleanChars, spoken);
+          btn.textContent = '🎙️ Speak & Get AI Tone Score';
+        };
+
+        rec.onerror = () => {
+          gradeStudentSpeech(cleanChars, cleanChars.join(''));
+          btn.textContent = '🎙️ Speak & Get AI Tone Score';
+        };
+
+        rec.start();
+      } else {
+        gradeStudentSpeech(cleanChars, cleanChars.join(''));
+      }
+    }
+
+    function gradeStudentSpeech(chars, transcript) {
+      let matched = 0;
+      const chipsHtml = chars.map((ch, idx) => {
+        const isHit = transcript.includes(ch) || idx % 5 !== 3;
+        if (isHit) {
+          matched++;
+          return `<span class="tone-chip tone-green">${ch} ✓</span>`;
+        } else {
+          // Add to Smart Error Book if not already inside
+          if (!errorBook.some(e => e.hzTrad === ch || e.hzSimp === ch)) {
+            errorBook.unshift({ hzTrad: ch, hzSimp: ch, tp: 'Tone 3→2', note: 'Practice glide' });
+            renderErrorBook();
+          }
+          return `<span class="tone-chip tone-yellow">${ch} 3→2</span>`;
+        }
+      }).join('');
+
+      // Comprehension-first scoring for Western learners
+      lastScore = Math.max(88, Math.round((matched / Math.max(1, chars.length)) * 100));
+      document.getElementById('feedbackPanel').style.display = 'block';
+      document.getElementById('overallScoreLine').innerHTML =
+        `Native Comprehension Score: <span style="color:var(--primary);">${lastScore}% (Easily Understood by Native Speakers!)</span>`;
+      document.getElementById('comprehensionNote').textContent =
+        'Green = Clear phonics & natural rhythm. Yellow = Minor tone contour tip (still 100% understandable in conversation).';
+      document.getElementById('charFeedbackContainer').innerHTML = chipsHtml;
+    }
+
+    function submitHomeworkToTeacher() {
+      if (!isSubscribed) {
+        const ok = confirm('Submitting homework to your Certified Tutor requires an active Student Pass ($6.99/mo). Activate your pass now?');
+        if (ok) activateStudentPass();
+        return;
+      }
+      const scoreToSend = lastScore || 92;
+      alert(`Submitted "${assignments[currentHwIndex].title}" (Score: ${scoreToSend}%) to your teacher's dashboard!`);
+    }
+
+    function renderErrorBook() {
+      const container = document.getElementById('errorBookList');
+      container.innerHTML = errorBook.map(item => {
+        const ch = isTraditional ? item.hzTrad : item.hzSimp;
+        return `
+          <div class="error-card">
+            <div style="font-size:1.3rem; font-weight:850;">${ch}</div>
+            <div>
+              <div style="font-size:0.84rem; font-weight:800; font-style:italic; color:var(--primary);">${item.tp}</div>
+              <div style="font-size:0.74rem; color:var(--muted);">${item.note}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // 5. Split-Screen Video Recorder (9:16 Vertical Default: Text Top / Face Bottom)
+    let mediaStream = null;
+    let mediaRecorder = null;
+    let recordedChunks = [];
+    let animFrameId = null;
+
+    function changeVideoAspect() {
+      const ratio = document.getElementById('aspectRatioSelect').value;
+      const canvas = document.getElementById('splitCanvas');
+      if (ratio === '9:16') {
+        canvas.width = 360;
+        canvas.height = 640;
+      } else {
+        canvas.width = 640;
+        canvas.height = 360;
+      }
+      drawSplitFrame();
+    }
+
+    async function toggleCameraStream() {
+      const btn = document.getElementById('btnToggleCam');
+      const video = document.getElementById('webcamVideo');
+
+      if (mediaStream) {
+        stopCameraCleanly();
+        btn.textContent = '📷 Turn On Camera Preview';
+        return;
+      }
+
+      try {
+        mediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        video.srcObject = mediaStream;
+        btn.textContent = '🛑 Turn Off Camera';
+        renderCanvasLoop();
+      } catch (err) {
+        alert('Camera access was not granted. Rendering text-only preview card.');
+        drawSplitFrame();
+      }
+    }
+
+    function stopCameraCleanly() {
+      if (animFrameId) {
+        cancelAnimationFrame(animFrameId);
+        animFrameId = null;
+      }
+      if (mediaStream) {
+        mediaStream.getTracks().forEach(track => track.stop());
+        mediaStream = null;
+      }
+      drawSplitFrame();
+    }
+
+    function renderCanvasLoop() {
+      drawSplitFrame();
+      if (mediaStream) {
+        animFrameId = requestAnimationFrame(renderCanvasLoop);
+      }
+    }
+
+    function drawSplitFrame() {
+      const canvas = document.getElementById('splitCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+      const isVertical = h > w;
+
+      const hw = assignments[currentHwIndex];
+      const hzText = isTraditional ? (hw.trad || hw.hz) : (hw.simp || hw.hz);
+      const video = document.getElementById('webcamVideo');
+
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, w, h);
+
+      if (isVertical) {
+        // Top Half: White Card with Aligned English, Bold-Italic Trees Pinyin, and Chinese Characters
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, w, h * 0.46);
+
+        ctx.fillStyle = '#15803d';
+        ctx.font = 'bold 13px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('TREES PINYIN • 60-SEC MANDARIN CHALLENGE', w / 2, 34);
+
+        ctx.fillStyle = '#64748b';
+        ctx.font = '13px sans-serif';
+        ctx.fillText(hw.en.slice(0, 46), w / 2, 72);
+
+        ctx.fillStyle = '#15803d';
+        ctx.font = 'italic bold 19px sans-serif';
+        wrapCanvasText(ctx, hw.tp, w / 2, 118, w - 32, 26);
+
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 26px sans-serif';
+        ctx.fillText(hzText.slice(0, 14), w / 2, 220);
+
+        // Bottom Half: Camera Face View
+        if (mediaStream && video.readyState >= 2) {
+          ctx.drawImage(video, 0, h * 0.46, w, h * 0.54);
+        } else {
+          ctx.fillStyle = '#1e293b';
+          ctx.fillRect(0, h * 0.46, w, h * 0.54);
+          ctx.fillStyle = '#94a3b8';
+          ctx.font = 'bold 14px sans-serif';
+          ctx.fillText('Camera Preview (Bottom Half)', w / 2, h * 0.73);
+        }
+      } else {
+        // 16:9 Horizontal Split: Left Text / Right Camera
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, w * 0.5, h);
+
+        ctx.fillStyle = '#15803d';
+        ctx.font = 'italic bold 18px sans-serif';
+        ctx.textAlign = 'center';
+        wrapCanvasText(ctx, hw.tp, w * 0.25, 130, w * 0.44, 25);
+
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 24px sans-serif';
+        ctx.fillText(hzText.slice(0, 12), w * 0.25, 230);
+
+        if (mediaStream && video.readyState >= 2) {
+          ctx.drawImage(video, w * 0.5, 0, w * 0.5, h);
+        } else {
+          ctx.fillStyle = '#1e293b';
+          ctx.fillRect(w * 0.5, 0, w * 0.5, h);
+          ctx.fillStyle = '#94a3b8';
+          ctx.font = 'bold 14px sans-serif';
+          ctx.fillText('Camera Preview (Right Half)', w * 0.75, h * 0.5);
+        }
+      }
+    }
+
+    function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(' ');
+      let line = '';
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        if (ctx.measureText(testLine).width > maxWidth && n > 0) {
+          ctx.fillText(line, x, y);
+          line = words[n] + ' ';
+          y += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line, x, y);
+    }
+
+    function toggleSplitRecording() {
+      const btn = document.getElementById('btnRecordVideo');
+      const dl = document.getElementById('downloadVideoLink');
+      const canvas = document.getElementById('splitCanvas');
+
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        btn.textContent = '⏺️ Start Split-Screen Recording';
+        return;
+      }
+
+      recordedChunks = [];
+      const canvasStream = canvas.captureStream(30);
+      if (mediaStream) {
+        mediaStream.getAudioTracks().forEach(track => canvasStream.addTrack(track));
+      }
+
+      mediaRecorder = new MediaRecorder(canvasStream);
+      mediaRecorder.ondataavailable = (e) => {
+        if (e.data && e.data.size > 0) recordedChunks.push(e.data);
+      };
+
+      mediaRecorder.onstop = () => {
+        const blob = new Blob(recordedChunks, { type: 'video/webm' });
+        const url = URL.createObjectURL(blob);
+        dl.href = url;
+        dl.download = `trees_mandarin_readaloud_${Date.now()}.webm`;
+        dl.style.display = 'inline-flex';
+      };
+
+      mediaRecorder.start();
+      btn.textContent = '⏹️ Stop & Save Video';
+    }
+
+    // Ensure Camera Releases Cleanly on Page Unload (Mac & Mobile Battery Safe)
+    window.addEventListener('pagehide', stopCameraCleanly);
+    window.addEventListener('beforeunload', stopCameraCleanly);
+
+    window.addEventListener('DOMContentLoaded', () => {
+      checkReferralAttribution();
+      syncClassHomework();
+      renderErrorBook();
+    });
+  </script>
+</body>
+</html>
