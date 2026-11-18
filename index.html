@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trees Mandarin | Certified Tutor Directory & Phonics Learning Hub</title>
+  <meta name="description" content="Learn Mandarin naturally with Certified Trees Tutors. Powered by Trees Pinyin natural phonics, automated voice scoring, and our co-created bilingual library." />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #15803d;
+      --primary-hover: #166534;
+      --primary-light: #dcfce7;
+      --gold: #d97706;
+      --gold-bg: #fef3c7;
+      --silver: #475569;
+      --silver-bg: #f1f5f9;
+      --accent: #2563eb;
+      --radius-pill: 9999px;
+      --radius-card: 20px;
+      --shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Top Navigation Capsule */
+    header {
+      position: sticky;
+      top: 14px;
+      z-index: 100;
+      max-width: 1160px;
+      margin: 14px auto 0;
+      padding: 0 16px;
+    }
+
+    .nav-capsule {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 10px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--primary);
+      letter-spacing: -0.02em;
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      padding: 7px 15px;
+      border-radius: var(--radius-pill);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+      background: #f1f5f9;
+    }
+
+    .btn-pill {
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.9rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 56px 0 36px;
+      text-align: center;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 6px 16px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4.5vw, 3.3rem);
+      font-weight: 850;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      max-width: 840px;
+      margin: 0 auto 18px;
+    }
+
+    .hero p {
+      font-size: 1.12rem;
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 auto 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 42px;
+    }
+
+    /* Interactive Phonics Demo Capsule */
+    .demo-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 26px;
+      max-width: 880px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-md);
+      text-align: left;
+    }
+
+    .demo-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .demo-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .demo-tab {
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.84rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      cursor: pointer;
+    }
+
+    .demo-tab.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .alignment-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .word-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .word-en {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .word-tp {
+      font-size: 1.08rem;
+      font-weight: 800;
+      font-style: italic;
+      color: var(--primary);
+      margin-bottom: 2px;
+    }
+
+    .word-hp {
+      font-size: 0.76rem;
+      color: #94a3b8;
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+
+    .word-hz {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .demo-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* Section Headers */
+    section {
+      padding: 52px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .section-head h2 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 600px;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      background: var(--card);
+      padding: 12px 18px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      align-items: center;
+    }
+
+    .filter-input {
+      flex: 1;
+      min-width: 200px;
+      border: none;
+      outline: none;
+      font-size: 0.92rem;
+      padding: 6px 10px;
+      background: transparent;
+    }
+
+    .filter-select {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 6px 14px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      background: #f8fafc;
+      color: var(--text);
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Tutor Directory Grid */
+    .tutor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 20px;
+    }
+
+    .tutor-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .tutor-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .tutor-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .tutor-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tutor-name {
+      font-weight: 800;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tutor-meta {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .tier-badge {
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 11px;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+    }
+
+    .tier-gold {
+      background: var(--gold-bg);
+      color: var(--gold);
+    }
+
+    .tier-silver {
+      background: var(--silver-bg);
+      color: var(--silver);
+    }
+
+    .tutor-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .tag {
+      font-size: 0.76rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      background: #f1f5f9;
+      color: #334155;
+    }
+
+    .tutor-bio {
+      font-size: 0.9rem;
+      color: #334155;
+      margin-bottom: 16px;
+    }
+
+    .score-bar {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+    }
+
+    .score-item strong {
+      color: var(--primary);
+      font-size: 0.92rem;
+    }
+
+    .tutor-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tutor-actions .btn-pill {
+      flex: 1;
+      justify-content: center;
+    }
+
+    /* UGC Co-Created Library */
+    .library-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 20px;
+    }
+
+    .story-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .story-type {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+
+    .story-title {
+      font-size: 1.18rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .story-sample {
+      background: #f8fafc;
+      border-left: 3px solid var(--primary);
+      padding: 10px 12px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      font-size: 0.9rem;
+    }
+
+    .story-sample .tp-line {
+      font-weight: 800;
+      font-style: italic;
+      color: var(--primary);
+    }
+
+    .story-author {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem;
+      color: var(--muted);
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Split Plans: Students & Schools / Tutors */
+    .split-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 22px;
+    }
+
+    .plan-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .plan-card.featured {
+      border: 2px solid var(--primary);
+    }
+
+    .plan-price {
+      font-size: 2.1rem;
+      font-weight: 850;
+      margin: 12px 0;
+      color: var(--text);
+    }
+
+    .plan-price span {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .plan-list {
+      list-style: none;
+      margin: 18px 0 24px;
+    }
+
+    .plan-list li {
+      margin-bottom: 10px;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .plan-list li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 0;
+      margin-top: 40px;
+      font-size: 0.86rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Capsule Navigation -->
+  <header>
+    <nav class="nav-capsule">
+      <a href="/" class="brand">
+        <span class="brand-icon">🌳</span>
+        <span>Trees Mandarin</span>
+      </a>
+      <div class="nav-links">
+        <a href="#directory" class="nav-link">Certified Tutors</a>
+        <a href="#library" class="nav-link">Bilingual Library</a>
+        <a href="/student.html" class="nav-link">Student Workspace</a>
+        <a href="/teacher.html" class="nav-link">Teacher Dashboard</a>
+        <a href="/cert.html" class="btn-pill btn-primary">Become a Certified Tutor</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="badge-pill">
+        <span>✨ Powered by Trees Pinyin Natural Phonics</span>
+      </div>
+      <h1>Speak Mandarin in 60 Seconds with Certified Trees Tutors</h1>
+      <p>
+        No cryptic symbols (q, x, zh). No confusing tone marks. Match with top-ranked bilingual tutors, practice with AI voice tone scoring, and explore our co-created story library.
+      </p>
+      <div class="hero-actions">
+        <a href="#directory" class="btn-pill btn-primary">Find a Certified Tutor</a>
+        <a href="/student.html" class="btn-pill btn-outline">Launch Student Pass ($6.99/mo)</a>
+        <a href="https://treespinyin.com/app" target="_blank" rel="noopener" class="btn-pill btn-outline">Free Phonics Tool ↗</a>
+      </div>
+
+      <!-- Interactive Live Phonics Capsule -->
+      <div class="demo-card">
+        <div class="demo-header">
+          <div>
+            <strong>Instant Phonics Comparison</strong>
+            <span style="font-size:0.84rem; color:var(--muted); margin-left:8px;">Read Mandarin using pure English phonics + trailing tone numbers (2, 3, 4)</span>
+          </div>
+          <div class="demo-tabs">
+            <button class="demo-tab active" onclick="loadSample(0, this)">Daily Greeting</button>
+            <button class="demo-tab" onclick="loadSample(1, this)">Classical Poetry (李白)</button>
+            <button class="demo-tab" onclick="loadSample(2, this)">Three Character Classic</button>
+          </div>
+        </div>
+
+        <div id="alignmentContainer" class="alignment-grid"></div>
+
+        <div class="demo-footer">
+          <span id="fullTranslation">English: "Hello! Excuse me, how much is this?"</span>
+          <div style="display:flex; gap:8px;">
+            <button class="btn-pill btn-outline" onclick="toggleScript()" id="scriptBtn">Script: Simplified (簡/繁)</button>
+            <button class="btn-pill btn-primary" onclick="speakCurrentSample()">🔊 Listen (Clear Female Voice)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certified Tutor Directory -->
+    <section id="directory">
+      <div class="section-head">
+        <div>
+          <h2>Official Certified Tutor Directory</h2>
+          <p>Ranked automatically by Contribution Score (student progress, bilingual lessons contributed, and community referrals). Book directly with tutors—100% zero agency markup.</p>
+        </div>
+        <a href="/cert.html" class="btn-pill btn-outline">Apply for Tutor Certification →</a>
+      </div>
+
+      <div class="filter-bar">
+        <span>🔍</span>
+        <input type="text" id="tutorSearch" class="filter-input" placeholder="Search tutor by name, specialty (e.g., Kids Phonics, Classical Poems, AP Chinese)..." oninput="renderTutors()" />
+        <select id="tierFilter" class="filter-select" onchange="renderTutors()">
+          <option value="ALL">All Tiers (Gold & Silver)</option>
+          <option value="Gold">🏆 Gold Certified Only</option>
+          <option value="Silver">🥈 Silver Certified</option>
+        </select>
+        <select id="englishFilter" class="filter-select" onchange="renderTutors()">
+          <option value="ALL">Any English Level</option>
+          <option value="Fluent">English: Fluent / Native</option>
+          <option value="Conversational">English: Conversational</option>
+        </select>
+      </div>
+
+      <div id="tutorGrid" class="tutor-grid"></div>
+    </section>
+
+    <!-- Co-Created Public Domain & Comics Library -->
+    <section id="library">
+      <div class="section-head">
+        <div>
+          <h2>Tutor Co-Created Bilingual Library</h2>
+          <p>Public domain classics, Aesop's Fables, and visual mnemonic comics annotated with verified Trees Pinyin. Every story connects you directly with its creator.</p>
+        </div>
+        <a href="/teacher.html#ugc" class="btn-pill btn-outline">Submit Story / Comic (+100 Pts)</a>
+      </div>
+
+      <div class="library-grid" id="libraryGrid"></div>
+    </section>
+
+    <!-- Ecosystem Portals: Student Subscription, Teacher SaaS, School Licensing -->
+    <section id="plans">
+      <div class="section-head">
+        <div>
+          <h2>One Ecosystem for Students, Tutors & Schools</h2>
+          <p>Independent tutors keep 100% of their lesson tuition while relying on the official Trees Mandarin workspace and textbooks for homework and tone analytics.</p>
+        </div>
+      </div>
+
+      <div class="split-grid">
+        <!-- Student Workspace Card -->
+        <div class="plan-card featured">
+          <div class="badge-pill">For Students & Families</div>
+          <h3>Student Practice Pass</h3>
+          <div class="plan-price">$6.99 <span>/ month</span></div>
+          <p style="font-size:0.9rem; color:var(--muted);">Required companion workspace for students learning with Certified Trees Tutors.</p>
+          <ul class="plan-list">
+            <li>Join your tutor's class via instant Class Code</li>
+            <li>Unlimited AI Mandarin tone & phonics voice scoring</li>
+            <li>Smart Error Book targeting words scored under 80%</li>
+            <li>9:16 & 16:9 split-screen read-aloud video recorder</li>
+            <li>Full access to 300+ character mnemonics & Amazon workbooks</li>
+          </ul>
+          <a href="/student.html" class="btn-pill btn-primary" style="width:100%; justify-content:center;">Start Student Subscription</a>
+        </div>
+
+        <!-- Certified Tutor Card -->
+        <div class="plan-card">
+          <div class="badge-pill">For Mandarin Educators</div>
+          <h3>Certified Trees Tutor</h3>
+          <div class="plan-price">Free <span>to Certify & Earn</span></div>
+          <p style="font-size:0.9rem; color:var(--muted);">Get listed on our global directory, automate homework grading, and earn recurring commissions.</p>
+          <ul class="plan-list">
+            <li>Pass the 63-Rule Phonics & Mandarin Voice Assessment</li>
+            <li>Keep 100% of your private tutoring hourly tuition</li>
+            <li>One-click homework assignment & class error radar</li>
+            <li>Earn <strong>25% recurring commission</strong> on student subscriptions</li>
+            <li>Publish bilingual stories & comics to boost directory ranking</li>
+          </ul>
+          <a href="/cert.html" class="btn-pill btn-outline" style="width:100%; justify-content:center;">Enter Certification Center</a>
+        </div>
+
+        <!-- School & District Partner Card -->
+        <div class="plan-card">
+          <div class="badge-pill">For K-12 Schools & Ambassadors</div>
+          <h3>School & District License</h3>
+          <div class="plan-price">Custom <span>/ Campus</span></div>
+          <p style="font-size:0.9rem; color:var(--muted);">Empower immersion programs, heritage schools, and private academies with frictionless Mandarin phonics.</p>
+          <ul class="plan-list">
+            <li>Campus-wide Student Workspace & teacher admin accounts</li>
+            <li>Aligned with official Amazon 7x9 bilingual readers</li>
+            <li><strong>20% B2B Ambassador Commission</strong> for tutors referring schools</li>
+            <li>Fast monthly affiliate payouts via PayPal Payouts</li>
+            <li>Zero complex setup—runs instantly in any browser</li>
+          </ul>
+          <a href="/teacher.html#partner" class="btn-pill btn-outline" style="width:100%; justify-content:center;">Register a School Referral</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://treespinyin.com" target="_blank" rel="noopener">TreesPinyin.com (Main Hub)</a>
+        <a href="/cert.html">Tutor Certification</a>
+        <a href="/teacher.html">Teacher Portal & UGC Studio</a>
+        <a href="/student.html">Student Workspace</a>
+        <a href="/teacher.html#partner">Affiliate & PayPal Payouts</a>
+      </div>
+      <p>© 2026 Trees Mandarin & Trees Pinyin™. All rights reserved. Built for effortless cross-cultural Mandarin education.</p>
+    </div>
+  </footer>
+
+  <script>
+    // 1. Live Phonics Interactive Samples
+    let useTraditional = false;
+    let currentSampleIndex = 0;
+
+    const SAMPLES = [
+      {
+        enFull: 'English: "Hello! Excuse me, how much is this?"',
+        ttsText: '你好！請問這個多少錢？',
+        words: [
+          { en: 'Hello', tp: 'Nee3 h-ow3', hp: 'Nǐ hǎo', simp: '你好', trad: '你好' },
+          { en: 'Excuse me', tp: 'Ching3-wen4', hp: 'Qǐngwèn', simp: '请问', trad: '請問' },
+          { en: 'This', tp: 'jer4 ge', hp: 'zhè ge', simp: '这个', trad: '這個' },
+          { en: 'How much', tp: 'dwo-sh-ow3', hp: 'duōshǎo', simp: '多少', trad: '多少' },
+          { en: 'Money', tp: 'ch-yen2?', hp: 'qián?', simp: '钱？', trad: '錢？' }
+        ]
+      },
+      {
+        enFull: 'English: "Looking up at the bright moon, bowing my head thinking of home." (Li Bai)',
+        ttsText: '舉頭望明月，低頭思故鄉。',
+        words: [
+          { en: 'Raise head', tp: 'Jyu3 t-oh2', hp: 'Jǔ tóu', simp: '举头', trad: '舉頭' },
+          { en: 'Gaze at', tp: 'wong4', hp: 'wàng', simp: '望', trad: '望' },
+          { en: 'Bright moon', tp: 'ming2 yweh4', hp: 'míng yuè', simp: '明月', trad: '明月' },
+          { en: 'Lower head', tp: 'dee t-oh2', hp: 'dī tóu', simp: '低头', trad: '低頭' },
+          { en: 'Think of home', tp: 's goo4-sh-yong', hp: 'sī gùxiāng', simp: '思故乡', trad: '思故鄉' }
+        ]
+      },
+      {
+        enFull: 'English: "People at birth are naturally good; their natures are much the same." (Three Character Classic)',
+        ttsText: '人之初，性本善。性相近，習相遠。',
+        words: [
+          { en: 'People at birth', tp: 'Ren2 jr ch-oo', hp: 'Rén zhī chū', simp: '人之初', trad: '人之初' },
+          { en: 'Nature is good', tp: 'shing4 ben3 shan4', hp: 'xìng běn shàn', simp: '性本善', trad: '性本善' },
+          { en: 'Natures similar', tp: 'shing4 sh-yong jin4', hp: 'xìng xiāng jìn', simp: '性相近', trad: '性相近' },
+          { en: 'Habits diverge', tp: 'shee2 sh-yong ywen3', hp: 'xí xiāng yuǎn', simp: '习相远', trad: '習相遠' }
+        ]
+      }
+    ];
+
+    function loadSample(index, btnEl) {
+      currentSampleIndex = index;
+      if (btnEl) {
+        document.querySelectorAll('.demo-tab').forEach(b => b.classList.remove('active'));
+        btnEl.classList.add('active');
+      }
+      const sample = SAMPLES[index];
+      document.getElementById('fullTranslation').textContent = sample.enFull;
+      const container = document.getElementById('alignmentContainer');
+      container.innerHTML = sample.words.map(w => `
+        <div class="word-box">
+          <div class="word-en">${w.en}</div>
+          <div class="word-tp">${w.tp}</div>
+          <div class="word-hp">${w.hp}</div>
+          <div class="word-hz">${useTraditional ? w.trad : w.simp}</div>
+        </div>
+      `).join('');
+    }
+
+    function toggleScript() {
+      useTraditional = !useTraditional;
+      document.getElementById('scriptBtn').textContent = useTraditional
+        ? 'Script: Traditional (繁體)'
+        : 'Script: Simplified (简体)';
+      loadSample(currentSampleIndex);
+    }
+
+    function speakCurrentSample() {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(SAMPLES[currentSampleIndex].ttsText);
+      utter.lang = 'zh-CN';
+      utter.rate = 0.88;
+      const voices = window.speechSynthesis.getVoices();
+      const femaleZh = voices.find(v =>
+        (v.lang.includes('zh') || v.lang.includes('cmn')) &&
+        /Ting-Ting|Xiaoxiao|Yaoyao|Meijia|Female|Google/i.test(v.name)
+      ) || voices.find(v => v.lang.includes('zh'));
+      if (femaleZh) utter.voice = femaleZh;
+      window.speechSynthesis.speak(utter);
+    }
+
+    // 2. Certified Tutor Directory Data (Sorted by Contribution Score)
+    const TUTORS = [
+      {
+        id: 'tutor_lin01',
+        name: 'Mei-Ling Lin',
+        initials: 'ML',
+        location: 'California, USA (PST)',
+        tier: 'Gold',
+        englishLevel: 'Fluent',
+        mandarinScore: '98%',
+        ruleScore: '100%',
+        contributionScore: 1420,
+        storiesContributed: 14,
+        studentsReferred: 38,
+        specialties: ['K-12 Immersion', 'Classical Tang Poetry', 'Character Mnemonics'],
+        bio: 'Bilingual educator specializing in zero-stress Mandarin phonics for American elementary and middle school students.'
+      },
+      {
+        id: 'tutor_chen02',
+        name: 'David Chen',
+        initials: 'DC',
+        location: 'New York, USA (EST)',
+        tier: 'Gold',
+        englishLevel: 'Fluent',
+        mandarinScore: '96%',
+        ruleScore: '98%',
+        contributionScore: 1180,
+        storiesContributed: 9,
+        studentsReferred: 29,
+        specialties: ['Adult Conversational', 'Business Mandarin', 'Tone Correction'],
+        bio: 'Helps English speakers master Mandarin tones in weeks using Trees Pinyin natural phonics and AI voice analytics.'
+      },
+      {
+        id: 'tutor_wang03',
+        name: 'Grace Wang',
+        initials: 'GW',
+        location: 'Vancouver, Canada (PST)',
+        tier: 'Gold',
+        englishLevel: 'Fluent',
+        mandarinScore: '97%',
+        ruleScore: '96%',
+        contributionScore: 950,
+        storiesContributed: 11,
+        studentsReferred: 21,
+        specialties: ['Heritage Kids', 'Comic Mnemonics', 'Aesop Fables'],
+        bio: 'Illustrator and Mandarin tutor creating 4-panel visual phonics comics for bilingual heritage families.'
+      },
+      {
+        id: 'tutor_zhao04',
+        name: 'Wen Zhao',
+        initials: 'WZ',
+        location: 'Texas, USA (CST)',
+        tier: 'Silver',
+        englishLevel: 'Conversational',
+        mandarinScore: '99%',
+        ruleScore: '94%',
+        contributionScore: 640,
+        storiesContributed: 6,
+        studentsReferred: 12,
+        specialties: ['Three Character Classic', 'Standard Pronunciation', 'Reading Aloud'],
+        bio: 'Native Mandarin pronunciation specialist guiding students through classical literature and daily dialogues.'
+      }
+    ];
+
+    function renderTutors() {
+      const query = document.getElementById('tutorSearch').value.toLowerCase();
+      const tier = document.getElementById('tierFilter').value;
+      const eng = document.getElementById('englishFilter').value;
+
+      const filtered = TUTORS
+        .filter(t => {
+          const matchQuery = !query ||
+            t.name.toLowerCase().includes(query) ||
+            t.bio.toLowerCase().includes(query) ||
+            t.specialties.some(s => s.toLowerCase().includes(query));
+          const matchTier = tier === 'ALL' || t.tier === tier;
+          const matchEng = eng === 'ALL' || t.englishLevel === eng;
+          return matchQuery && matchTier && matchEng;
+        })
+        .sort((a, b) => b.contributionScore - a.contributionScore);
+
+      const grid = document.getElementById('tutorGrid');
+      grid.innerHTML = filtered.map((t, idx) => `
+        <div class="tutor-card">
+          <div>
+            <div class="tutor-top">
+              <div class="tutor-profile">
+                <div class="avatar">${t.initials}</div>
+                <div>
+                  <div class="tutor-name">#${idx + 1} ${t.name}</div>
+                  <div class="tutor-meta">${t.location} • EN: ${t.englishLevel}</div>
+                </div>
+              </div>
+              <span class="tier-badge ${t.tier === 'Gold' ? 'tier-gold' : 'tier-silver'}">
+                ${t.tier === 'Gold' ? '🏆 Gold Tutor' : '🥈 Silver Tutor'}
+              </span>
+            </div>
+
+            <div class="tutor-tags">
+              <span class="tag">63-Rule Exam: ${t.ruleScore}</span>
+              <span class="tag">Mandarin Voice: ${t.mandarinScore}</span>
+              ${t.specialties.map(s => `<span class="tag">${s}</span>`).join('')}
+            </div>
+
+            <p class="tutor-bio">${t.bio}</p>
+          </div>
+
+          <div>
+            <div class="score-bar">
+              <div class="score-item">Contribution: <strong>${t.contributionScore} pts</strong></div>
+              <div class="score-item">Library: <strong>${t.storiesContributed} works</strong></div>
+              <div class="score-item">Students: <strong>${t.studentsReferred}</strong></div>
+            </div>
+
+            <div class="tutor-actions">
+              <a href="/student.html?ref=${t.id}" class="btn-pill btn-primary">Join Class (?ref=${t.id})</a>
+              <a href="#library" class="btn-pill btn-outline">View Lessons</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // 3. Co-Created Bilingual Library Preview
+    const LIBRARY_ITEMS = [
+      {
+        type: 'Public Domain Classic • Tang Poetry',
+        title: 'Ode to the Goose (詠鵝 - 駱賓王)',
+        tpLine: 'Er2, er2, er2, chyu sh-yong4 t-yen g-er...',
+        hzLine: '鵝，鵝，鵝，曲項向天歌。白毛浮綠水，紅掌撥清波。',
+        enLine: 'Goose, goose, goose, curving its neck to sing to the sky...',
+        author: 'Mei-Ling Lin',
+        tutorId: 'tutor_lin01'
+      },
+      {
+        type: 'Aesop’s Fables • Bilingual Adaptation',
+        title: 'The Tortoise and the Hare (龜兔賽跑)',
+        tpLine: 'Woo-gway her too4-z dzai4 sen-lin2 lee3 sai4-p-ow3...',
+        hzLine: '烏龜和兔子在森林裡賽跑，兔子跑得非常快。',
+        enLine: 'The tortoise and the hare raced in the forest, and the hare ran very fast.',
+        author: 'Grace Wang',
+        tutorId: 'tutor_wang03'
+      },
+      {
+        type: '4-Panel Mnemonic Comic • Daily Dialogue',
+        title: 'Ordering Dim Sum & Tea (茶樓點心對話)',
+        tpLine: 'Ching3 g-ay3 wor3 yee4 long2 sh-ya-j-yow her2 yee4 hoo2 cha2.',
+        hzLine: '請給我一籠蝦餃和一壺茶。',
+        enLine: 'Please give me one basket of shrimp dumplings and a pot of tea.',
+        author: 'David Chen',
+        tutorId: 'tutor_chen02'
+      }
+    ];
+
+    function renderLibrary() {
+      const grid = document.getElementById('libraryGrid');
+      grid.innerHTML = LIBRARY_ITEMS.map(item => `
+        <div class="story-card">
+          <div>
+            <div class="story-type">${item.type}</div>
+            <div class="story-title">${item.title}</div>
+            <div class="story-sample">
+              <div class="tp-line">${item.tpLine}</div>
+              <div style="font-weight:700; margin:4px 0;">${item.hzLine}</div>
+              <div style="color:var(--muted); font-size:0.82rem;">${item.enLine}</div>
+            </div>
+          </div>
+          <div class="story-author">
+            <span>Contributed by <strong>${item.author}</strong></span>
+            <a href="/student.html?ref=${item.tutorId}" class="btn-pill btn-outline" style="padding:5px 12px; font-size:0.8rem;">
+              Learn with ${item.author.split(' ')[0]} →
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Initialize Page
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSample(0);
+      renderTutors();
+      renderLibrary();
+    });
+  </script>
+</body>
+</html>

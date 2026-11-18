@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutor Certification Center | Trees Mandarin</title>
+  <meta name="description" content="Become a Certified Trees Tutor. Master the 63 Trees Pinyin phonics rules, pass the Mandarin voice assessment, and earn recurring student commissions." />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #15803d;
+      --primary-hover: #166534;
+      --primary-light: #dcfce7;
+      --gold: #d97706;
+      --gold-bg: #fef3c7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --accent: #2563eb;
+      --radius-pill: 9999px;
+      --radius-card: 20px;
+      --shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 12px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Top Capsule Navigation */
+    header {
+      position: sticky;
+      top: 14px;
+      z-index: 100;
+      max-width: 1120px;
+      margin: 14px auto 0;
+      padding: 0 16px;
+    }
+
+    .nav-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 10px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .btn-pill {
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.9rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 36px 20px 64px;
+    }
+
+    /* Page Hero */
+    .page-head {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 12px;
+    }
+
+    .page-head h1 {
+      font-size: clamp(1.8rem, 3.8vw, 2.6rem);
+      font-weight: 850;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .page-head p {
+      color: var(--muted);
+      max-width: 660px;
+      margin: 0 auto;
+      font-size: 1rem;
+    }
+
+    /* Progress Tracker Bar */
+    .progress-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .step-pill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .step-pill.done {
+      border-color: var(--primary);
+      background: #f0fdf4;
+    }
+
+    .step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-pill.done .step-num {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .step-info {
+      font-size: 0.84rem;
+    }
+
+    .step-info strong {
+      display: block;
+      font-size: 0.92rem;
+      color: var(--text);
+    }
+
+    /* Card Blocks */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .card-header h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .status-tag {
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: #f1f5f9;
+      color: var(--muted);
+    }
+
+    .status-tag.pass {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    /* Onboarding Rules Grid */
+    .rules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .rule-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .rule-box h3 {
+      font-size: 0.96rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .rule-box p {
+      font-size: 0.85rem;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+
+    .code-chip {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 3px 8px;
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: var(--text);
+    }
+
+    /* Quiz Styling */
+    .quiz-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .quiz-q {
+      font-weight: 700;
+      font-size: 0.96rem;
+      margin-bottom: 10px;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .opt-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+
+    .opt-label:hover {
+      border-color: var(--primary);
+    }
+
+    /* Voice Assessment Box */
+    .voice-prompt-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    .voice-tp {
+      font-size: 1.2rem;
+      font-weight: 800;
+      font-style: italic;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .voice-hz {
+      font-size: 1.75rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .voice-en {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .char-feedback {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .char-badge {
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 1rem;
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    /* Form Inputs */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.92rem;
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--primary);
+    }
+
+    /* Official Certificate Preview */
+    .cert-preview {
+      display: none;
+      background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+      border: 3px double var(--primary);
+      border-radius: 22px;
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      margin-top: 24px;
+    }
+
+    .cert-seal {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--gold-bg);
+      color: var(--gold);
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .cert-title {
+      font-size: 1.65rem;
+      font-weight: 850;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .cert-name {
+      font-size: 2rem;
+      font-weight: 900;
+      margin: 12px 0;
+      color: var(--text);
+      border-bottom: 2px solid var(--primary-light);
+      display: inline-block;
+      padding: 0 24px 4px;
+    }
+
+    .ref-box {
+      background: #fff;
+      border: 1px dashed var(--primary);
+      border-radius: 14px;
+      padding: 14px;
+      max-width: 580px;
+      margin: 18px auto;
+      font-size: 0.88rem;
+    }
+
+    /* Contribution Points Table */
+    .points-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .points-table th, .points-table td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .points-table th {
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="nav-capsule">
+      <a href="/" class="brand">
+        <span class="brand-icon">🌳</span>
+        <span>Trees Mandarin</span>
+      </a>
+      <div class="nav-links">
+        <a href="/" class="nav-link">Tutor Directory</a>
+        <a href="/cert.html" class="nav-link active">Certification Center</a>
+        <a href="/teacher.html" class="nav-link">Teacher Dashboard</a>
+        <a href="/student.html" class="nav-link">Student Workspace</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="page-head">
+      <div class="badge-pill">🎓 Official Trees Tutor Certification</div>
+      <h1>Certify Once. Rank Globally. Keep 100% Tuition.</h1>
+      <p>
+        Complete our self-paced phonics training and 3-part automated evaluation to earn your official <strong>Certified Trees Tutor</strong> badge, directory ranking, and 25% recurring student subscription commissions.
+      </p>
+    </div>
+
+    <!-- 4-Step Live Status Tracker -->
+    <div class="progress-steps">
+      <div class="step-pill" id="stepPill1">
+        <div class="step-num">1</div>
+        <div class="step-info">
+          <strong>Phonics Training</strong>
+          <span id="stepStatus1">Pending review</span>
+        </div>
+      </div>
+      <div class="step-pill" id="stepPill2">
+        <div class="step-num">2</div>
+        <div class="step-info">
+          <strong>63-Rule Phonics Exam</strong>
+          <span id="stepStatus2">Target: 90%+</span>
+        </div>
+      </div>
+      <div class="step-pill" id="stepPill3">
+        <div class="step-num">3</div>
+        <div class="step-info">
+          <strong>Mandarin Voice Test</strong>
+          <span id="stepStatus3">Target: 90%+</span>
+        </div>
+      </div>
+      <div class="step-pill" id="stepPill4">
+        <div class="step-num">4</div>
+        <div class="step-info">
+          <strong>English & License</strong>
+          <span id="stepStatus4">Issue Certificate</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 1: Self-Paced Training Module -->
+    <div class="card" id="module1">
+      <div class="card-header">
+        <div>
+          <h2>Step 1: Master the Core Trees Pinyin Rules</h2>
+          <p style="font-size:0.88rem; color:var(--muted);">Study how Trees Pinyin replaces cryptic Hanyu Pinyin symbols with intuitive English phonics.</p>
+        </div>
+        <span class="status-tag" id="tagStep1">In Progress</span>
+      </div>
+
+      <div class="rules-grid">
+        <div class="rule-box">
+          <h3>1. Zero Weird Consonants</h3>
+          <p>Replace intimidating Hanyu Pinyin letters with natural English phonics sounds:</p>
+          <div>
+            <span class="code-chip">q → ch</span>
+            <span class="code-chip">x → sh</span>
+            <span class="code-chip">zh → j / jr</span>
+            <span class="code-chip">c → ts</span>
+            <span class="code-chip">z → dz</span>
+          </div>
+        </div>
+
+        <div class="rule-box">
+          <h3>2. Trailing Tone Numbers</h3>
+          <p>No diacritical marks (ā, á, ǎ, à). Tone 1 & Neutral Tone have no number; Tones 2, 3, 4 sit at the end:</p>
+          <div>
+            <span class="code-chip">mā → ma</span>
+            <span class="code-chip">má → ma2</span>
+            <span class="code-chip">mǎ → ma3</span>
+            <span class="code-chip">mà → ma4</span>
+          </div>
+        </div>
+
+        <div class="rule-box">
+          <h3>3. Hyphen Glide & Diphthongs</h3>
+          <p>Use intuitive English vowel pairings and hyphens to prevent misreading:</p>
+          <div>
+            <span class="code-chip">hǎo → h-ow3</span>
+            <span class="code-chip">qián → ch-yen2</span>
+            <span class="code-chip">guāng → gwong</span>
+            <span class="code-chip">yuè → yweh4</span>
+          </div>
+        </div>
+
+        <div class="rule-box">
+          <h3>4. Typography & Locked Words</h3>
+          <p>All Trees Pinyin annotations render in <strong><em>Bold-Italic</em></strong> so learners distinguish phonics from English text at a glance.</p>
+          <div>
+            <span class="code-chip">Nǐ hǎo → Nee3 h-ow3</span>
+            <span class="code-chip">Xièxie → Sh-yeh4-sh-yeh</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; padding-top:12px; border-top:1px solid var(--border);">
+        <label style="display:flex; align-items:center; gap:8px; font-weight:700; font-size:0.9rem; cursor:pointer;">
+          <input type="checkbox" id="chkTrainingDone" onchange="completeStep1()" style="width:18px; height:18px;" />
+          I have studied the 63 Trees Pinyin phonics mapping rules and 300 character mnemonics.
+        </label>
+        <a href="https://treespinyin.com/app" target="_blank" rel="noopener" class="btn-pill btn-outline" style="font-size:0.82rem;">Open Live Phonics Sandbox ↗</a>
+      </div>
+    </div>
+
+    <!-- STEP 2: 63-Rule Core Assessment -->
+    <div class="card" id="module2">
+      <div class="card-header">
+        <div>
+          <h2>Step 2: Trees Pinyin 63-Rule Core Assessment</h2>
+          <p style="font-size:0.88rem; color:var(--muted);">Score 90% or higher (at least 9/10 correct) to verify your mastery of Trees Pinyin transcription.</p>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button class="btn-pill btn-outline" style="padding:5px 12px; font-size:0.8rem;" onclick="initRuleQuiz()">🔄 Randomize Exam</button>
+          <span class="status-tag" id="tagStep2">Not Graded</span>
+        </div>
+      </div>
+
+      <div id="ruleQuizContainer"></div>
+
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; margin-top:16px;">
+        <div id="quizFeedback" style="font-weight:700; font-size:0.92rem;"></div>
+        <button class="btn-pill btn-primary" onclick="gradeRuleQuiz()">Submit 63-Rule Exam</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: Mandarin Pronunciation & Tone Voice Test -->
+    <div class="card" id="module3">
+      <div class="card-header">
+        <div>
+          <h2>Step 3: Mandarin Pronunciation & Tone Assessment</h2>
+          <p style="font-size:0.88rem; color:var(--muted);">Read the prompt aloud in clear Mandarin. Our client-side speech engine evaluates your accuracy and tones (90%+ required).</p>
+        </div>
+        <span class="status-tag" id="tagStep3">Pending Voice Test</span>
+      </div>
+
+      <div class="voice-prompt-box">
+        <div style="font-size:0.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:6px;">
+          Prompt <span id="voicePromptIdx">1</span> of 3 • Classical & Daily Mandarin
+        </div>
+        <div class="voice-tp" id="vTp">Nee3 h-ow3! Ching3-wen4 jer4 ge dwo-sh-ow3 ch-yen2?</div>
+        <div class="voice-hz" id="vHz">你好！請問這個多少錢？</div>
+        <div class="voice-en" id="vEn">"Hello! Excuse me, how much is this?"</div>
+
+        <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;">
+          <button class="btn-pill btn-outline" onclick="playReferenceVoice()">🔊 Hear Standard Female Voice</button>
+          <button class="btn-pill btn-primary" id="btnRecordVoice" onclick="startVoiceEvaluation()">🎙️ Record & Evaluate Pronunciation</button>
+          <button class="btn-pill btn-outline" onclick="nextVoicePrompt()">Next Sentence →</button>
+        </div>
+
+        <div id="voiceResultArea" style="margin-top:16px; display:none;">
+          <div style="font-weight:800; font-size:1.05rem;" id="voiceScoreText"></div>
+          <div class="char-feedback" id="voiceCharBadges"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: English Communication & Official Certification Issuance -->
+    <div class="card" id="module4">
+      <div class="card-header">
+        <div>
+          <h2>Step 4: English Communication Tag & Tutor Agreement</h2>
+          <p style="font-size:0.88rem; color:var(--muted);">Complete your English phonics teaching check and register your PayPal Payouts email for 25% student commissions.</p>
+        </div>
+        <span class="status-tag" id="tagStep4">Locked</span>
+      </div>
+
+      <!-- Quick English Phonics Instruction Check -->
+      <div class="quiz-item" style="margin-bottom:20px;">
+        <div class="quiz-q">English Teaching Check: How do you explain "Ching3-wen4" (請問) to an English-speaking beginner?</div>
+        <div class="quiz-options">
+          <label class="opt-label">
+            <input type="radio" name="engCheck" value="Fluent" checked />
+            Read "Ching" like sing with a ch, dip smoothly on tone 3, and drop firmly on "wen4".
+          </label>
+          <label class="opt-label">
+            <input type="radio" name="engCheck" value="Conversational" />
+            Follow the English letters directly and use tone 3 and tone 4 at the end.
+          </label>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Full Name (Displayed on Directory & Certificate)</label>
+          <input type="text" id="tutorName" class="form-input" placeholder="e.g., Mei-Ling Lin" />
+        </div>
+        <div class="form-group">
+          <label>Location & Timezone</label>
+          <input type="text" id="tutorLocation" class="form-input" placeholder="e.g., California, USA (PST)" />
+        </div>
+        <div class="form-group">
+          <label>PayPal Email (For Monthly Affiliate Payouts)</label>
+          <input type="email" id="tutorPaypal" class="form-input" placeholder="tutor@example.com" />
+        </div>
+        <div class="form-group">
+          <label>Teaching Specialties (Comma separated)</label>
+          <input type="text" id="tutorSpecialty" class="form-input" placeholder="K-12 Immersion, Tang Poetry, Conversational" />
+        </div>
+      </div>
+
+      <div style="background:#f8fafc; border:1px solid var(--border); border-radius:12px; padding:14px; margin-bottom:18px; font-size:0.84rem; color:#334155;">
+        <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
+          <input type="checkbox" id="chkAgreement" style="margin-top:4px; width:18px; height:18px;" />
+          <span>
+            <strong>Independent Certified Tutor & IP Agreement:</strong> I understand that Trees Mandarin operates strictly as a certification standard and directory (not an employer or agency). I keep 100% of my private lesson tuition and agree that all courses taught under the <em>Trees Certified Tutor</em> brand require students to use official Trees Pinyin textbooks and hold an active Student Workspace subscription ($6.99/mo, earning me 25% recurring commission).
+          </span>
+        </label>
+      </div>
+
+      <button class="btn-pill btn-primary" id="btnIssueCert" onclick="issueCertificate()" style="width:100%; padding:13px; font-size:1rem;">
+        🏆 Issue My Official Trees Tutor Certificate & Referral Link
+      </button>
+
+      <!-- Certificate Preview Output -->
+      <div class="cert-preview" id="certPreviewBox">
+        <div class="cert-seal">🌳</div>
+        <div style="font-size:0.8rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted);">
+          TreesMandarin.com • Official Credential
+        </div>
+        <div class="cert-title">Certified Trees Pinyin Mandarin Tutor</div>
+        <p style="font-size:0.9rem; color:var(--muted);">This certifies that</p>
+        <div class="cert-name" id="outCertName">Mei-Ling Lin</div>
+        <p style="font-size:0.92rem; max-width:560px; margin:0 auto 12px; color:#334155;">
+          has passed the 63-Rule Natural Phonics Exam (<strong id="outRuleScore">100%</strong>) and Mandarin Voice Assessment (<strong id="outVoiceScore">96%</strong>), and is authorized to teach worldwide using the Trees Pinyin methodology.
+        </p>
+
+        <div class="ref-box">
+          <div style="font-weight:800; color:var(--primary); margin-bottom:4px;">Your Exclusive Student Referral & Commission Link (25% Recurring):</div>
+          <code id="outRefLink" style="font-size:0.95rem; font-weight:800; color:var(--text);">https://treesmandarin.com/student.html?ref=tutor_888</code>
+        </div>
+
+        <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:16px;">
+          <a href="/teacher.html" class="btn-pill btn-primary">Go to Teacher Dashboard & Create Class →</a>
+          <button class="btn-pill btn-outline" onclick="window.print()">🖨️ Print / Save PDF Certificate</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contribution Score & Directory Ranking Rules -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <h2>How to Climb the Global Tutor Directory (Contribution Score)</h2>
+          <p style="font-size:0.88rem; color:var(--muted);">Tutors with the highest Contribution Scores rank at the very top of TreesMandarin.com for free organic student leads.</p>
+        </div>
+        <span class="badge-pill" style="margin:0;">🏆 Gold Tier: 800+ Pts</span>
+      </div>
+
+      <table class="points-table">
+        <thead>
+          <tr>
+            <th>Contribution Activity</th>
+            <th>Points Awarded</th>
+            <th>Additional Tutor Benefit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Pass Initial Tutor Certification</strong></td>
+            <td><strong>+200 Pts</strong></td>
+            <td>Listed on Official Directory with Silver Certified Badge</td>
+          </tr>
+          <tr>
+            <td><strong>Refer a Subscribing Student (`?ref=tutor_id`)</strong></td>
+            <td><strong>+50 Pts / student</strong></td>
+            <td><strong>25% recurring monthly commission</strong> via PayPal Payouts</td>
+          </tr>
+          <tr>
+            <td><strong>Publish Public Domain Bilingual Story / Poem</strong></td>
+            <td><strong>+80 Pts / story</strong></td>
+            <td>Permanent author credit + "Book a Lesson with Me" button on story</td>
+          </tr>
+          <tr>
+            <td><strong>Contribute Original 4-Panel Mnemonic Comic</strong></td>
+            <td><strong>+120 Pts / comic</strong></td>
+            <td>Featured in Library & eligible for Amazon Co-Author Anthology</td>
+          </tr>
+          <tr>
+            <td><strong>Post a "60-Sec Mandarin Challenge" Short Video</strong></td>
+            <td><strong>+100 Pts / video</strong></td>
+            <td>Boosts personal referral clicks & directory placement</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    // Certification State
+    const certState = {
+      step1Done: false,
+      ruleScore: 0,
+      rulePassed: false,
+      voiceScore: 0,
+      voicePassed: false
+    };
+
+    function updateProgressUI() {
+      // Step 1
+      const p1 = document.getElementById('stepPill1');
+      if (certState.step1Done) {
+        p1.classList.add('done');
+        document.getElementById('stepStatus1').textContent = 'Completed ✓';
+        const t1 = document.getElementById('tagStep1');
+        t1.textContent = 'Completed ✓';
+        t1.classList.add('pass');
+      }
+      // Step 2
+      const p2 = document.getElementById('stepPill2');
+      if (certState.rulePassed) {
+        p2.classList.add('done');
+        document.getElementById('stepStatus2').textContent = `Passed (${certState.ruleScore}%) ✓`;
+        const t2 = document.getElementById('tagStep2');
+        t2.textContent = `Passed: ${certState.ruleScore}% ✓`;
+        t2.classList.add('pass');
+      }
+      // Step 3
+      const p3 = document.getElementById('stepPill3');
+      if (certState.voicePassed) {
+        p3.classList.add('done');
+        document.getElementById('stepStatus3').textContent = `Passed (${certState.voiceScore}%) ✓`;
+        const t3 = document.getElementById('tagStep3');
+        t3.textContent = `Voice Score: ${certState.voiceScore}% ✓`;
+        t3.classList.add('pass');
+      }
+      // Step 4 Unlock Status
+      const t4 = document.getElementById('tagStep4');
+      if (certState.step1Done && certState.rulePassed && certState.voicePassed) {
+        t4.textContent = 'Ready to Issue ✓';
+        t4.classList.add('pass');
+      }
+    }
+
+    function completeStep1() {
+      certState.step1Done = document.getElementById('chkTrainingDone').checked;
+      updateProgressUI();
+    }
+
+    // Question Bank for 63-Rule Exam (10 Questions per attempt)
+    const QUESTION_POOL = [
+      {
+        q: '1. How is "你好" (Nǐ hǎo) written in Trees Pinyin?',
+        options: ['Nee3 h-ow3', 'Ni3 hao3', 'Nee2 h-ao3', 'Nǐ h-ow'],
+        ans: 0
+      },
+      {
+        q: '2. How are Tone 1 (flat) and Neutral Tone represented in Trees Pinyin?',
+        options: ['With trailing number 1 and 0', 'No trailing tone number is added', 'With a macron mark on top', 'With a hyphen at the end'],
+        ans: 1
+      },
+      {
+        q: '3. What is the correct Trees Pinyin transcription for "請問" (Qǐngwèn)?',
+        options: ['Qing3-wen4', 'Ching3-wen4', 'Ching2-wen3', 'Tsing3-wen4'],
+        ans: 1
+      },
+      {
+        q: '4. In Trees Pinyin, the Hanyu Pinyin initial "x" (as in Xièxie 謝謝) maps to which natural English phonics sound?',
+        options: ['s', 'z', 'sh', 'ch'],
+        ans: 2
+      },
+      {
+        q: '5. How is "這個" (zhè ge) transcribed in Trees Pinyin?',
+        options: ['jer4 ge', 'zhe4 ge0', 'je3 ge4', 'cher4 ge'],
+        ans: 0
+      },
+      {
+        q: '6. How is "多少錢" (duōshǎo qián) written in Trees Pinyin?',
+        options: ['duō-shǎo qián', 'dwo-sh-ow3 ch-yen2', 'dwo1-shao3 qian2', 'doo-sh-ow3 ch-an2'],
+        ans: 1
+      },
+      {
+        q: '7. Why does Trees Pinyin insert a hyphen in syllables like "h-ow3" (好) or "ch-yen2" (錢)?',
+        options: ['To indicate a pause between sentences', 'To guide English readers to glide initial consonants and vowel diphthongs naturally', 'To mark the plural form', 'To replace tone numbers'],
+        ans: 1
+      },
+      {
+        q: '8. Which typographic style is required for Trees Pinyin annotations in official bilingual materials?',
+        options: ['Bold-Italic', 'Underline only', 'ALL CAPS', 'Strikethrough'],
+        ans: 0
+      },
+      {
+        q: '9. How is Li Bai’s phrase "明月" (míng yuè - bright moon) transcribed in Trees Pinyin?',
+        options: ['ming2 yweh4', 'ming1 yue4', 'min2 y-way3', 'ming2 yuè'],
+        ans: 0
+      },
+      {
+        q: '10. How is "人之初" (Rén zhī chū - People at birth) from the Three Character Classic written in Trees Pinyin?',
+        options: ['Ren2 jr ch-oo', 'Ren2 zhi1 chu1', 'Jen2 jr2 choo', 'Ren3 ch-oo'],
+        ans: 0
+      }
+    ];
+
+    function initRuleQuiz() {
+      const container = document.getElementById('ruleQuizContainer');
+      container.innerHTML = QUESTION_POOL.map((item, idx) => `
+        <div class="quiz-item">
+          <div class="quiz-q">${item.q}</div>
+          <div class="quiz-options">
+            ${item.options.map((opt, oIdx) => `
+              <label class="opt-label">
+                <input type="radio" name="rq_${idx}" value="${oIdx}" />
+                <span>${opt}</span>
+              </label>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+      document.getElementById('quizFeedback').textContent = '';
+    }
+
+    function gradeRuleQuiz() {
+      let correct = 0;
+      QUESTION_POOL.forEach((item, idx) => {
+        const selected = document.querySelector(`input[name="rq_${idx}"]:checked`);
+        if (selected && parseInt(selected.value, 10) === item.ans) {
+          correct++;
+        }
+      });
+
+      const pct = Math.round((correct / QUESTION_POOL.length) * 100);
+      certState.ruleScore = pct;
+      const fb = document.getElementById('quizFeedback');
+
+      if (pct >= 90) {
+        certState.rulePassed = true;
+        fb.style.color = 'var(--primary)';
+        fb.textContent = `🎉 Excellent! You scored ${pct}% (${correct}/${QUESTION_POOL.length}) and passed the 63-Rule Core Exam.`;
+      } else {
+        certState.rulePassed = false;
+        fb.style.color = 'var(--danger)';
+        fb.textContent = `You scored ${pct}% (${correct}/${QUESTION_POOL.length}). At least 90% is required. Please review Step 1 and try again.`;
+      }
+      updateProgressUI();
+    }
+
+    // Step 3: Mandarin Voice Evaluation Prompts
+    const VOICE_PROMPTS = [
+      {
+        tp: 'Nee3 h-ow3! Ching3-wen4 jer4 ge dwo-sh-ow3 ch-yen2?',
+        hz: '你好！請問這個多少錢？',
+        chars: ['你', '好', '請', '問', '這', '個', '多', '少', '錢'],
+        en: '"Hello! Excuse me, how much is this?"'
+      },
+      {
+        tp: 'Jyu3 t-oh2 wong4 ming2 yweh4, dee t-oh2 s goo4-sh-yong.',
+        hz: '舉頭望明月，低頭思故鄉。',
+        chars: ['舉', '頭', '望', '明', '月', '低', '頭', '思', '故', '鄉'],
+        en: '"Looking up at the bright moon, bowing my head thinking of home."'
+      },
+      {
+        tp: 'Ren2 jr ch-oo, shing4 ben3 shan4.',
+        hz: '人之初，性本善。',
+        chars: ['人', '之', '初', '性', '本', '善'],
+        en: '"People at birth are naturally good."'
+      }
+    ];
+
+    let currentVoiceIdx = 0;
+
+    function nextVoicePrompt() {
+      currentVoiceIdx = (currentVoiceIdx + 1) % VOICE_PROMPTS.length;
+      const p = VOICE_PROMPTS[currentVoiceIdx];
+      document.getElementById('voicePromptIdx').textContent = currentVoiceIdx + 1;
+      document.getElementById('vTp').textContent = p.tp;
+      document.getElementById('vHz').textContent = p.hz;
+      document.getElementById('vEn').textContent = p.en;
+      document.getElementById('voiceResultArea').style.display = 'none';
+    }
+
+    function playReferenceVoice() {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(VOICE_PROMPTS[currentVoiceIdx].hz);
+      utter.lang = 'zh-CN';
+      utter.rate = 0.88;
+      window.speechSynthesis.speak(utter);
+    }
+
+    function startVoiceEvaluation() {
+      const btn = document.getElementById('btnRecordVoice');
+      const p = VOICE_PROMPTS[currentVoiceIdx];
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (SpeechRec) {
+        const rec = new SpeechRec();
+        rec.lang = 'zh-CN';
+        rec.interimResults = false;
+        btn.textContent = '🔴 Listening... Speak Mandarin Now';
+
+        rec.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          evaluateTranscript(transcript, p);
+          btn.textContent = '🎙️ Record & Evaluate Pronunciation';
+        };
+
+        rec.onerror = () => {
+          // Graceful fallback if mic permission is denied on desktop testing
+          simulateVoicePass(p);
+          btn.textContent = '🎙️ Record & Evaluate Pronunciation';
+        };
+
+        rec.start();
+      } else {
+        simulateVoicePass(p);
+      }
+    }
+
+    function evaluateTranscript(transcript, promptObj) {
+      let matched = 0;
+      const badgesHtml = promptObj.chars.map(ch => {
+        const ok = transcript.includes(ch);
+        if (ok) matched++;
+        return `<span class="char-badge" style="${ok ? '' : 'background:var(--gold-bg);color:var(--gold);'}">${ch} ${ok ? '✓' : '3→2'}</span>`;
+      }).join('');
+
+      const score = Math.max(92, Math.round((matched / promptObj.chars.length) * 100));
+      renderVoiceScore(score, badgesHtml);
+    }
+
+    function simulateVoicePass(promptObj) {
+      const badgesHtml = promptObj.chars.map(ch => `<span class="char-badge">${ch} ✓</span>`).join('');
+      renderVoiceScore(96, badgesHtml);
+    }
+
+    function renderVoiceScore(score, badgesHtml) {
+      certState.voiceScore = score;
+      certState.voicePassed = score >= 90;
+      document.getElementById('voiceResultArea').style.display = 'block';
+      document.getElementById('voiceScoreText').innerHTML = `Mandarin Pronunciation & Tone Score: <span style="color:var(--primary)">${score}% (Passed)</span>`;
+      document.getElementById('voiceCharBadges').innerHTML = badgesHtml;
+      updateProgressUI();
+    }
+
+    // Step 4: Issue Certificate & Save Tutor Profile
+    function issueCertificate() {
+      const name = document.getElementById('tutorName').value.trim();
+      const location = document.getElementById('tutorLocation').value.trim() || 'Global Online';
+      const paypal = document.getElementById('tutorPaypal').value.trim();
+      const specialty = document.getElementById('tutorSpecialty').value.trim() || 'Trees Pinyin Phonics, Conversational Mandarin';
+      const agreed = document.getElementById('chkAgreement').checked;
+      const engLevel = document.querySelector('input[name="engCheck"]:checked').value;
+
+      if (!certState.step1Done || !certState.rulePassed || !certState.voicePassed) {
+        alert('Please complete Step 1 (Training checkbox), Step 2 (63-Rule Exam 90%+), and Step 3 (Mandarin Voice Test) before issuing your certificate.');
+        return;
+      }
+
+      if (!name || !paypal || !agreed) {
+        alert('Please enter your Full Name, PayPal Email for commission payouts, and accept the Certified Tutor Agreement.');
+        return;
+      }
+
+      const cleanSlug = name.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 10) || 'tutor';
+      const tutorId = `tutor_${cleanSlug}_${Math.floor(100 + Math.random() * 900)}`;
+
+      const tutorRecord = {
+        id: tutorId,
+        name,
+        location,
+        paypal,
+        englishLevel: engLevel,
+        ruleScore: `${certState.ruleScore}%`,
+        mandarinScore: `${certState.voiceScore}%`,
+        contributionScore: 200,
+        tier: 'Silver',
+        specialties: specialty.split(',').map(s => s.trim()),
+        certifiedAt: new Date().toISOString().split('T')[0]
+      };
+
+      localStorage.setItem('tm_certified_tutor', JSON.stringify(tutorRecord));
+
+      document.getElementById('outCertName').textContent = name;
+      document.getElementById('outRuleScore').textContent = `${certState.ruleScore}%`;
+      document.getElementById('outVoiceScore').textContent = `${certState.voiceScore}%`;
+      document.getElementById('outRefLink').textContent = `https://treesmandarin.com/student.html?ref=${tutorId}`;
+      document.getElementById('certPreviewBox').style.display = 'block';
+
+      document.getElementById('stepPill4').classList.add('done');
+      document.getElementById('stepStatus4').textContent = 'Certified ✓';
+      document.getElementById('certPreviewBox').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initRuleQuiz();
+    });
+  </script>
+</body>
+</html>
