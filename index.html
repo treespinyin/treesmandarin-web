@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Trees Mandarin | Chinese Cultural Ambassadors & Phonics Classroom</title>
-  <meta name="description" content="Uniting Chinese Cultural Ambassadors worldwide with 3-minute Trees Pinyin natural phonics, collaborative bilingual classrooms, and a co-created classic library." />
+  <title>Trees Mandarin | Trees Mentors & 3-Minute Phonics Classroom</title>
+  <meta name="description" content="Uniting Trees Mentors and Evergreen Mentors worldwide with 3-minute Trees Pinyin natural phonics, collaborative classrooms, and a co-created classic library." />
+  <link rel="icon" type="image/jpeg" href="/icon.jpg" />
+  <link rel="apple-touch-icon" href="/icon.jpg" />
   <style>
     :root {
       --bg: #f8fafc;
@@ -15,8 +17,8 @@
       --primary: #15803d;
       --primary-hover: #166534;
       --primary-light: #dcfce7;
-      --gold: #d97706;
-      --gold-bg: #fef3c7;
+      --evergreen: #065f46;
+      --evergreen-bg: #d1fae5;
       --silver: #475569;
       --silver-bg: #f1f5f9;
       --radius-pill: 9999px;
@@ -49,7 +51,7 @@
       position: sticky;
       top: 14px;
       z-index: 100;
-      max-width: 1120px;
+      max-width: 1140px;
       margin: 14px auto 0;
       padding: 0 16px;
     }
@@ -59,7 +61,7 @@
       backdrop-filter: blur(12px);
       border: 1px solid var(--border);
       border-radius: var(--radius-pill);
-      padding: 10px 22px;
+      padding: 8px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -73,20 +75,18 @@
       align-items: center;
       gap: 10px;
       font-weight: 850;
-      font-size: 1.18rem;
+      font-size: 1.15rem;
       color: var(--primary);
       letter-spacing: -0.02em;
     }
 
-    .brand-icon {
-      width: 34px;
-      height: 34px;
+    .brand-logo {
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      background: var(--primary-light);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
+      object-fit: cover;
+      border: 1px solid var(--border);
+      background: #fff;
     }
 
     .nav-links {
@@ -97,9 +97,9 @@
     }
 
     .nav-link {
-      padding: 7px 14px;
+      padding: 7px 13px;
       border-radius: var(--radius-pill);
-      font-size: 0.88rem;
+      font-size: 0.87rem;
       font-weight: 600;
       color: var(--muted);
       transition: all 0.2s;
@@ -113,7 +113,7 @@
     .btn-pill {
       padding: 8px 18px;
       border-radius: var(--radius-pill);
-      font-size: 0.88rem;
+      font-size: 0.87rem;
       font-weight: 700;
       border: none;
       cursor: pointer;
@@ -146,14 +146,14 @@
     }
 
     .container {
-      max-width: 1120px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 0 20px;
     }
 
     /* Mission Hero */
     .hero {
-      padding: 64px 0 40px;
+      padding: 60px 0 40px;
       text-align: center;
     }
 
@@ -161,8 +161,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--primary-light);
-      color: var(--primary);
+      background: var(--evergreen-bg);
+      color: var(--evergreen);
       font-weight: 700;
       font-size: 0.82rem;
       padding: 6px 16px;
@@ -171,7 +171,7 @@
     }
 
     .hero h1 {
-      font-size: clamp(2rem, 4.4vw, 3.2rem);
+      font-size: clamp(2rem, 4.4vw, 3.15rem);
       font-weight: 850;
       letter-spacing: -0.03em;
       line-height: 1.18;
@@ -180,7 +180,7 @@
     }
 
     .hero p {
-      font-size: 1.08rem;
+      font-size: 1.06rem;
       color: var(--muted);
       max-width: 680px;
       margin: 0 auto 30px;
@@ -191,7 +191,7 @@
       justify-content: center;
       gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 48px;
+      margin-bottom: 46px;
     }
 
     /* 4-Line Unified Phonics Capsule */
@@ -292,7 +292,7 @@
 
     /* Mission & Covenant Pillars */
     section {
-      padding: 52px 0;
+      padding: 50px 0;
     }
 
     .section-head {
@@ -347,7 +347,7 @@
       color: var(--muted);
     }
 
-    /* Ambassador Directory */
+    /* Mentor Directory */
     .filter-bar {
       display: flex;
       gap: 10px;
@@ -451,12 +451,12 @@
       white-space: nowrap;
     }
 
-    .tier-gold {
-      background: var(--gold-bg);
-      color: var(--gold);
+    .tier-evergreen {
+      background: var(--evergreen-bg);
+      color: var(--evergreen);
     }
 
-    .tier-silver {
+    .tier-mentor {
       background: var(--silver-bg);
       color: var(--silver);
     }
@@ -549,17 +549,17 @@
   <header>
     <nav class="nav-capsule">
       <a href="/" class="brand">
-        <span class="brand-icon">🌳</span>
+        <img src="/icon.jpg" alt="Trees Mandarin Logo" class="brand-logo" />
         <span>Trees Mandarin</span>
       </a>
       <div class="nav-links">
         <a href="#mission" class="nav-link">Our Mission</a>
-        <a href="#ambassadors" class="nav-link">Ambassadors</a>
-        <a href="#library" class="nav-link">Classic Library</a>
+        <a href="#mentors" class="nav-link">Trees Mentors</a>
+        <a href="/forum.html" class="nav-link">Co-Creation Forum</a>
         <a href="/student.html" class="nav-link">Student Classroom</a>
-        <a href="/teacher.html" class="nav-link">Teacher Studio</a>
+        <a href="/teacher.html" class="nav-link">Mentor Studio</a>
         <button class="btn-pill btn-outline" id="scriptToggleBtn" onclick="toggleScript()" style="padding:6px 12px; font-size:0.8rem;">簡 / 繁</button>
-        <a href="/cert.html" class="btn-pill btn-primary">Become an Ambassador</a>
+        <a href="/cert.html" class="btn-pill btn-primary">Become a Trees Mentor</a>
       </div>
     </nav>
   </header>
@@ -567,15 +567,15 @@
   <main class="container">
     <!-- Minimalist Mission Hero -->
     <section class="hero">
-      <div class="badge-pill">🌏 Global Chinese Cultural Ambassadors</div>
+      <div class="badge-pill">🌿 Trees Mentors • Evergreen Mentors</div>
       <h1>Unite to Share Chinese Culture with 3-Minute Trees Pinyin</h1>
       <p>
-        Trees Mandarin is a dedicated classroom workspace for teachers and learners. We equip certified educators with intuitive natural phonics so anyone can read Mandarin aloud in three minutes—and unite together to build an open, living library of Chinese classics.
+        Trees Mandarin is a dedicated classroom workspace for teachers and learners. We equip certified Trees Mentors with intuitive natural phonics so anyone can read Mandarin aloud in three minutes—and unite together to build a living library of Chinese classics.
       </p>
       <div class="hero-actions">
-        <a href="/cert.html" class="btn-pill btn-primary">Join as a Cultural Ambassador</a>
+        <a href="/cert.html" class="btn-pill btn-primary">Join as a Trees Mentor</a>
         <a href="/student.html" class="btn-pill btn-outline">Enter Student Classroom</a>
-        <a href="https://treespinyin.com/app" target="_blank" rel="noopener" class="btn-pill btn-outline">Open Trees Pinyin Tool ↗</a>
+        <a href="/forum.html" class="btn-pill btn-outline">Explore Co-Creation Forum</a>
       </div>
 
       <!-- Unified 4-Line Output Interactive Demo (English / Trees Pinyin / Hanyu Pinyin / Chinese) -->
@@ -605,7 +605,7 @@
     <section id="mission">
       <div class="section-head">
         <div>
-          <h2>Our Purpose & Ambassador Covenant</h2>
+          <h2>Our Purpose & Mentor Covenant</h2>
           <p>Built as a pure teaching and learning hub—uniting independent educators under one clear phonetic standard.</p>
         </div>
       </div>
@@ -623,7 +623,7 @@
           <span class="pillar-icon">🤝</span>
           <h3>United Trademark Authorization</h3>
           <p>
-            Certified Chinese Cultural Ambassadors are authorized to use the <strong>Trees Pinyin</strong> and <strong>Trees Mandarin</strong> trademarks solely for independent student recruitment and classroom teaching—excluding print publishing, derivative software, or other commercial acts.
+            Certified Trees Mentors are authorized to use the <strong>Trees Pinyin™</strong> and <strong>Trees Mandarin™</strong> trademarks solely for independent student recruitment and classroom teaching—excluding print publishing, derivative software, or other commercial acts.
           </p>
         </div>
 
@@ -631,29 +631,29 @@
           <span class="pillar-icon">📚</span>
           <h3>Co-Created Living Library</h3>
           <p>
-            Ambassadors collaborate in our community forum to translate public domain classics, craft correlated vocabulary mnemonics, and illustrate stories. Peer-verified works graduate into the Official Graded Reading Library for every classroom.
+            Mentors collaborate in our Co-Creation Forum to translate public domain classics, craft correlated vocabulary mnemonics, and illustrate stories. Peer-verified works graduate into the Official Graded Reading Library for every classroom.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Official Cultural Ambassador Directory -->
-    <section id="ambassadors">
+    <!-- Official Trees Mentor Directory -->
+    <section id="mentors">
       <div class="section-head">
         <div>
-          <h2>Certified Chinese Cultural Ambassadors</h2>
-          <p>Ranked transparently by classroom impact and community contributions. Connect directly with an ambassador to begin your Mandarin journey.</p>
+          <h2>Certified Trees Mentors</h2>
+          <p>Ranked transparently by classroom impact and community contributions. Connect directly with a Trees Mentor or Evergreen Mentor to begin your Mandarin journey.</p>
         </div>
-        <a href="/cert.html" class="btn-pill btn-outline">Ambassador Academy & Exam →</a>
+        <a href="/cert.html" class="btn-pill btn-outline">Mentor Academy & Exam →</a>
       </div>
 
       <div class="filter-bar">
         <span>🔍</span>
-        <input type="text" id="tutorSearch" class="filter-input" placeholder="Search ambassador by name or specialty (e.g., Tang Poetry, Kids Phonics, Mnemonics)..." oninput="renderTutors()" />
+        <input type="text" id="tutorSearch" class="filter-input" placeholder="Search mentor by name or specialty (e.g., Tang Poetry, Kids Phonics, Mnemonics)..." oninput="renderTutors()" />
         <select id="tierFilter" class="filter-select" onchange="renderTutors()">
-          <option value="ALL">All Ambassadors</option>
-          <option value="Gold">🏆 Gold Ambassadors</option>
-          <option value="Silver">🥈 Certified Ambassadors</option>
+          <option value="ALL">All Mentors</option>
+          <option value="Gold">🌲 Evergreen Mentors</option>
+          <option value="Silver">🌿 Trees Mentors</option>
         </select>
         <select id="englishFilter" class="filter-select" onchange="renderTutors()">
           <option value="ALL">Any English Level</option>
@@ -670,9 +670,9 @@
       <div class="section-head">
         <div>
           <h2>Official Co-Created Bilingual Library</h2>
-          <p>Public domain classics, graded readings, and correlated character mnemonics refined by our ambassador community.</p>
+          <p>Public domain classics, graded readings, and correlated character mnemonics refined by our Trees Mentor community.</p>
         </div>
-        <a href="/teacher.html#ugc" class="btn-pill btn-outline">Contribute in Co-Creation Studio →</a>
+        <a href="/forum.html" class="btn-pill btn-outline">Open Co-Creation Forum →</a>
       </div>
 
       <div class="card-grid" id="libraryGrid"></div>
@@ -683,11 +683,12 @@
     <div class="container">
       <div class="footer-links">
         <a href="https://treespinyin.com" target="_blank" rel="noopener">TreesPinyin.com</a>
-        <a href="/cert.html">Ambassador Academy</a>
-        <a href="/teacher.html">Teacher Classroom</a>
-        <a href="/student.html">Student Workspace</a>
+        <a href="/forum.html">Co-Creation Forum</a>
+        <a href="/cert.html">Mentor Academy</a>
+        <a href="/teacher.html">Mentor Studio</a>
+        <a href="/student.html">Student Classroom</a>
       </div>
-      <p>© 2026 Trees Mandarin & Trees Pinyin™. Uniting Chinese Cultural Ambassadors worldwide.</p>
+      <p>© 2026 Trees Mandarin & Trees Pinyin™. Uniting Trees Mentors worldwide.</p>
     </div>
   </footer>
 
@@ -770,7 +771,7 @@
       window.speechSynthesis.speak(utter);
     }
 
-    // Fallback Ambassador & Library Data (Replaced live by D1 via TM_API)
+    // Fallback Mentor & Library Data (Replaced live by D1 via TM_API)
     const TUTORS = [
       {
         id: 'tutor_lin01',
@@ -782,7 +783,7 @@
         contributionScore: 1420,
         storiesContributed: 14,
         specialties: ['K-12 Immersion', 'Tang Poetry', 'Character Mnemonics'],
-        bio: 'Chinese Cultural Ambassador helping Western learners read classical poetry and daily Mandarin effortlessly.'
+        bio: 'Evergreen Mentor helping Western learners read classical poetry and daily Mandarin effortlessly.'
       },
       {
         id: 'tutor_chen02',
@@ -821,11 +822,11 @@
         tutorId: 'tutor_lin01'
       },
       {
-        type: 'Official Graded Reading • Aesop’s Fables',
-        title: 'The Tortoise and the Hare (龜兔賽跑)',
-        tpLine: 'Woo-gway her too4-z dzai4 sen-lin2 lee3 sai4-p-ow3...',
-        hzLine: '烏龜和兔子在森林裡賽跑，兔子跑得非常快。',
-        enLine: 'The tortoise and the hare raced in the forest, and the hare ran very fast.',
+        type: 'Official Mnemonic • Level 1',
+        title: 'Character Mnemonic: 好 (Good) - Mother & Child',
+        tpLine: 'H-ow3! Nee3 h-ow3!',
+        hzLine: '好！你好！',
+        enLine: 'A woman (女) and a child (子) together means Good (好).',
         author: 'Grace Wang',
         tutorId: 'tutor_wang03'
       }
@@ -859,8 +860,8 @@
                   <div class="tutor-meta">${t.location} • EN: ${t.englishLevel}</div>
                 </div>
               </div>
-              <span class="tier-badge ${t.tier === 'Gold' ? 'tier-gold' : 'tier-silver'}">
-                ${t.tier === 'Gold' ? '🏆 Gold' : '🥈 Certified'}
+              <span class="tier-badge ${t.tier === 'Gold' ? 'tier-evergreen' : 'tier-mentor'}">
+                ${t.tier === 'Gold' ? '🌲 Evergreen Mentor' : '🌿 Trees Mentor'}
               </span>
             </div>
 
@@ -897,7 +898,7 @@
           </div>
           <div class="story-author">
             <span>Contributed by <strong>${item.author}</strong></span>
-            <a href="/student.html?ref=${item.tutorId}" style="color:var(--primary); font-weight:700;">Read & Practice →</a>
+            <a href="/forum.html" style="color:var(--primary); font-weight:700;">View in Library →</a>
           </div>
         </div>
       `).join('');
@@ -926,12 +927,12 @@
           });
         }
 
-        const libRes = await TM_API.getLibrary();
+        const libRes = await TM_API.getLibrary('official');
         if (libRes && libRes.ok && libRes.library.length > 0) {
           LIBRARY_ITEMS.length = 0;
           libRes.library.forEach(item => {
             LIBRARY_ITEMS.push({
-              type: item.category,
+              type: `${item.entry_type} • ${item.grade_level}`,
               title: item.title,
               tpLine: item.tp_text,
               hzLine: item.hz_text,
