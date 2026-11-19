@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Co-Creation Forum & Official Library | Trees Mandarin</title>
+  <meta name="description" content="Trees Mentors and Evergreen Mentors collaborate to translate classics, fork correlated character mnemonics, and refine the Official Graded Reading Library." />
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #15803d;
+      --primary-hover: #166534;
+      --primary-light: #dcfce7;
+      --evergreen: #065f46;
+      --evergreen-bg: #d1fae5;
+      --gold: #d97706;
+      --gold-bg: #fef3c7;
+      --danger: #dc2626;
+      --danger-bg: #fee2e2;
+      --accent: #2563eb;
+      --accent-bg: #dbeafe;
+      --radius-pill: 9999px;
+      --radius-card: 20px;
+      --shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.04);
+      --shadow-md: 0 12px 32px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Capsule Header */
+    header {
+      position: sticky;
+      top: 14px;
+      z-index: 100;
+      max-width: 1160px;
+      margin: 14px auto 0;
+      padding: 0 16px;
+    }
+
+    .nav-capsule {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 10px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 850;
+      font-size: 1.15rem;
+      color: var(--primary);
+    }
+
+    .brand-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--primary-light);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      padding: 7px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .btn-pill {
+      padding: 8px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.86rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .btn-outline { background: #fff; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+    .btn-sm { padding: 6px 12px; font-size: 0.78rem; }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 32px 20px 72px;
+    }
+
+    /* Hero Banner */
+    .page-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .page-header h1 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 850;
+      letter-spacing: -0.02em;
+    }
+
+    .page-header p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      max-width: 680px;
+      margin-top: 4px;
+    }
+
+    /* Tier Switcher & Search Bar */
+    .control-bar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .tier-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tier-tab {
+      padding: 9px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .tier-tab.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .search-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .form-input, .form-select, .form-textarea {
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.88rem;
+      outline: none;
+      font-family: inherit;
+      background: #fff;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--primary);
+    }
+
+    /* Info Strip */
+    .info-strip {
+      background: var(--evergreen-bg);
+      color: var(--evergreen);
+      border-radius: 14px;
+      padding: 12px 18px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* Entry Cards */
+    .entries-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 20px;
+    }
+
+    .entry-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .entry-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 0.76rem;
+      font-weight: 700;
+    }
+
+    .badge {
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .badge-official { background: var(--primary-light); color: var(--primary); }
+    .badge-forum { background: var(--gold-bg); color: var(--gold); }
+    .badge-word { background: var(--accent-bg); color: var(--accent); }
+
+    .entry-title {
+      font-size: 1.12rem;
+      font-weight: 800;
+      margin-top: 6px;
+    }
+
+    /* Unified 4-Line Box */
+    .four-line-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .line-en { font-size: 0.84rem; color: var(--muted); margin-bottom: 4px; }
+    .line-tp { font-size: 1.05rem; font-weight: 850; font-style: italic; color: var(--primary); margin-bottom: 2px; }
+    .line-hp { font-size: 0.82rem; color: #64748b; margin-bottom: 4px; }
+    .line-hz { font-size: 1.25rem; font-weight: 800; color: var(--text); }
+
+    .mnemonic-box {
+      background: #f0fdf4;
+      border: 1px dashed #86efac;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 0.82rem;
+      color: #166534;
+    }
+
+    .entry-img {
+      width: 100%;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal-box {
+      background: var(--card);
+      border-radius: var(--radius-card);
+      max-width: 640px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 26px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .form-group { margin-bottom: 12px; }
+    .form-group label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 5px; }
+    .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 600px) { .form-grid-2 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="nav-capsule">
+      <a href="/" class="brand">
+        <span class="brand-icon">🌳</span>
+        <span>Trees Mandarin</span>
+      </a>
+      <div class="nav-links">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/forum.html" class="nav-link active">Co-Creation Forum</a>
+        <a href="/teacher.html" class="nav-link">Mentor Studio</a>
+        <a href="/student.html" class="nav-link">Student Classroom</a>
+        <a href="/cert.html" class="nav-link">Mentor Academy</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="page-header">
+      <div>
+        <h1>Mentor Co-Creation Forum & Official Library</h1>
+        <p>
+          Trees Mentors and Evergreen Mentors share public domain stories, correlated vocabulary mnemonics, and lesson plans. Peer-verified works graduate into the Official Library and earn from the 15% Monthly Content Revenue Pool.
+        </p>
+      </div>
+      <button class="btn-pill btn-primary" onclick="openPublishModal()">+ Publish Work / Mnemonic</button>
+    </div>
+
+    <!-- Tier Switcher & Target Word Search -->
+    <div class="control-bar">
+      <div class="tier-tabs">
+        <button class="tier-tab active" id="tabOfficial" onclick="switchTier('official')">🌿 Official Graded Library</button>
+        <button class="tier-tab" id="tabForum" onclick="switchTier('forum')">💬 Mentor Co-Creation Forum</button>
+      </div>
+
+      <div class="search-group">
+        <input type="text" id="targetWordInput" class="form-input" placeholder="Filter by target word (e.g., 好, 鵝)" style="width:220px;" onkeydown="if(event.key==='Enter') loadEntries()" />
+        <button class="btn-pill btn-outline btn-sm" onclick="loadEntries()">🔍 Filter</button>
+        <button class="btn-pill btn-outline btn-sm" onclick="clearWordFilter()">Reset</button>
+      </div>
+    </div>
+
+    <!-- Governance & Revenue Rule Strip -->
+    <div class="info-strip" id="tierInfoStrip">
+      <span>✨ <strong>Official Library:</strong> Peer-verified works (5+ Mentor citations, 10+ endorsements, 0 unresolved errors) used directly in classrooms & eligible for the 15% Monthly Revenue Pool.</span>
+      <span>🛡️ Author floor: 55% • Verified Editor fix: 15% share (or 45% split) • Never taken down</span>
+    </div>
+
+    <!-- Entries Container -->
+    <div id="entriesGrid" class="entries-grid"></div>
+  </main>
+
+  <!-- MODAL 1: Publish New Work / Fork Alternative Mnemonic -->
+  <div class="modal-backdrop" id="publishModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2 id="publishModalTitle" style="font-size:1.2rem; font-weight:850;">Publish to Mentor Co-Creation Forum</h2>
+        <button class="btn-pill btn-outline btn-sm" onclick="closeModal('publishModal')">✕ Close</button>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label>Entry Type</label>
+          <select id="pubType" class="form-select" style="width:100%;">
+            <option value="Mnemonic">Vocabulary Mnemonic (Correlated)</option>
+            <option value="Classic Story">Public Domain Classic Story</option>
+            <option value="Lesson Plan">Custom Lesson Plan</option>
+            <option value="Illustrated Comic">Illustrated 4-Panel Comic</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Grade Level</label>
+          <select id="pubGrade" class="form-select" style="width:100%;">
+            <option value="Level 1">Level 1 (Beginner)</option>
+            <option value="Level 2">Level 2 (Elementary)</option>
+            <option value="Level 3">Level 3 (Intermediate)</option>
+            <option value="Level 4">Level 4 (Classical / Advanced)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label>Target Word / Character (Enables Mnemonic Forking)</label>
+          <input type="text" id="pubTargetWord" class="form-input" style="width:100%;" placeholder="e.g., 好, 鵝, 謝" />
+        </div>
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" id="pubTitle" class="form-input" style="width:100%;" placeholder="e.g., Character Mnemonic: 好 (Good)" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Chinese Text (漢字)</label>
+        <textarea id="pubHz" class="form-textarea" style="width:100%;" rows="2" placeholder="e.g., 好！你好！"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Idiomatic English Translation (英文)</label>
+        <input type="text" id="pubEn" class="form-input" style="width:100%;" placeholder="e.g., Good! Hello!" />
+      </div>
+
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label>Hanyu Pinyin (漢語拼音)</label>
+          <input type="text" id="pubHp" class="form-input" style="width:100%;" placeholder="e.g., Hǎo! Nǐ hǎo!" />
+        </div>
+        <div class="form-group">
+          <label>Trees Pinyin (Auto-generated if left blank)</label>
+          <input type="text" id="pubTp" class="form-input" style="width:100%;" placeholder="e.g., H-ow3! Nee3 h-ow3!" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Correlated Mnemonic Logic (Must connect pronunciation, meaning & example)</label>
+        <textarea id="pubLogic" class="form-textarea" style="width:100%;" rows="2" placeholder="Explain how the English sound, Chinese meaning, and example sentence connect..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Optional Illustration (Auto-compressed to WebP in your browser)</label>
+        <input type="file" id="pubImageFile" accept="image/*" class="form-input" style="width:100%;" onchange="handleImageCompression(this)" />
+        <div id="compressStatus" style="font-size:0.78rem; color:var(--primary); margin-top:4px;"></div>
+      </div>
+
+      <div style="background:#f8fafc; border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin-bottom:14px; font-size:0.78rem; color:#334155;">
+        <label style="display:flex; gap:8px; align-items:flex-start; cursor:pointer;">
+          <input type="checkbox" id="pubLicense" style="margin-top:3px;" />
+          <span>
+            <strong>Contributor License Agreement:</strong> I confirm this is public domain or my 100% original work. I retain attribution (and 100% initial share / 55% minimum floor) while granting Trees Mandarin a worldwide, perpetual, royalty-free license to include it in the Official Library.
+          </span>
+        </label>
+      </div>
+
+      <button class="btn-pill btn-primary" style="width:100%; padding:11px;" onclick="submitNewEntry()">🚀 Publish to Forum (Starts with 100% Author Share)</button>
+    </div>
+  </div>
+
+  <!-- MODAL 2: Suggest Substantive Edit (15% Editor Share Transfer) -->
+  <div class="modal-backdrop" id="editModal">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h2 style="font-size:1.2rem; font-weight:850;">✏️ Submit Substantive Improvement (15% Editor Share)</h2>
+        <button class="btn-pill btn-outline btn-sm" onclick="closeModal('editModal')">✕ Close</button>
+      </div>
+
+      <p style="font-size:0.82rem; color:var(--muted); margin-bottom:14px;">
+        Fix a polyphone/tone error, improve English idiomatic accuracy, or strengthen the mnemonic correlation. The original author keeps at least <strong>55%</strong>; verified editors earn <strong>15%</strong> (or split the <strong>45% optimization pool</strong>). Works are never taken down.
+      </p>
+
+      <input type="hidden" id="editArticleId" />
+      <div class="form-group">
+        <label>Chinese Text (漢字)</label>
+        <textarea id="editHz" class="form-textarea" style="width:100%;" rows="2"></textarea>
+      </div>
+      <div class="form-group">
+        <label>English Translation (英文)</label>
+        <input type="text" id="editEn" class="form-input" style="width:100%;" />
+      </div>
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label>Trees Pinyin</label>
+          <input type="text" id="editTp" class="form-input" style="width:100%;" />
+        </div>
+        <div class="form-group">
+          <label>Hanyu Pinyin</label>
+          <input type="text" id="editHp" class="form-input" style="width:100%;" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Improved Mnemonic Logic</label>
+        <textarea id="editLogic" class="form-textarea" style="width:100%;" rows="2"></textarea>
+      </div>
+
+      <button class="btn-pill btn-primary" style="width:100%; padding:11px;" onclick="submitSubstantiveEdit()">✓ Apply Improvement & Register Editor Share</button>
+    </div>
+  </div>
+
+  <script src="/js/api-client.js"></script>
+  <script>
+    let currentTier = 'official';
+    let currentEntries = [];
+    let currentMentor = { id: 'tutor_lin01', name: 'Mei-Ling Lin' };
+
+    function loadMentorSession() {
+      const saved = localStorage.getItem('tm_certified_tutor');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (parsed.id && parsed.name) currentMentor = parsed;
+        } catch (e) {}
+      }
+    }
+
+    function switchTier(tier) {
+      currentTier = tier;
+      document.getElementById('tabOfficial').classList.toggle('active', tier === 'official');
+      document.getElementById('tabForum').classList.toggle('active', tier === 'forum');
+
+      const strip = document.getElementById('tierInfoStrip');
+      if (tier === 'official') {
+        strip.innerHTML = `
+          <span>✨ <strong>Official Graded Library:</strong> Peer-verified works used in classrooms & earning from the 15% Monthly Content Revenue Pool.</span>
+          <span>🛡️ Author floor: 55% • Verified Editor: 15% share (or 45% split) • Never taken down</span>
+        `;
+      } else {
+        strip.innerHTML = `
+          <span>💬 <strong>Mentor Co-Creation Forum:</strong> Open sandbox for Trees Mentors. Works automatically graduate to Official Library at <strong>5+ citations, 10+ endorsements & 0 unresolved errors</strong>.</span>
+          <span>🌿 Fork any word to add parallel mnemonics!</span>
+        `;
+      }
+      loadEntries();
+    }
+
+    function clearWordFilter() {
+      document.getElementById('targetWordInput').value = '';
+      loadEntries();
+    }
+
+    async function loadEntries() {
+      const grid = document.getElementById('entriesGrid');
+      grid.innerHTML = '<div style="color:var(--muted); padding:20px;">Loading from Cloud D1...</div>';
+
+      const targetWord = document.getElementById('targetWordInput').value.trim();
+      const res = await TM_API.getLibrary(currentTier, targetWord);
+
+      if (res && res.ok) {
+        currentEntries = res.library || [];
+      } else {
+        currentEntries = [];
+      }
+
+      if (currentEntries.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column:1/-1; background:#fff; border:1px solid var(--border); border-radius:20px; padding:36px; text-align:center; color:var(--muted);">
+            No entries found in <strong>${currentTier === 'official' ? 'Official Library' : 'Co-Creation Forum'}</strong>${targetWord ? ` for "${targetWord}"` : ''}.
+            <div style="margin-top:14px;">
+              <button class="btn-pill btn-primary" onclick="openPublishModal('${targetWord}')">+ Be the first to publish${targetWord ? ` for "${targetWord}"` : ''}</button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = currentEntries.map((item, idx) => `
+        <div class="entry-card">
+          <div>
+            <div class="entry-meta">
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <span class="badge ${item.status === 'official' ? 'badge-official' : 'badge-forum'}">
+                  ${item.status === 'official' ? '🌿 Official' : '💬 Forum'}
+                </span>
+                <span class="badge" style="background:#f1f5f9; color:#334155;">${item.entry_type} • ${item.grade_level}</span>
+                ${item.target_word ? `<span class="badge badge-word" style="cursor:pointer;" onclick="filterByWord('${item.target_word}')">Word: ${item.target_word}</span>` : ''}
+              </div>
+              <span style="color:var(--muted);">By <strong>${item.author_name}</strong></span>
+            </div>
+
+            <div class="entry-title">${item.title}</div>
+
+            <div class="four-line-box" style="margin-top:10px;">
+              <div class="line-en">${item.en_text}</div>
+              <div class="line-tp">${item.tp_text}</div>
+              <div class="line-hp">${item.hp_text || ''}</div>
+              <div class="line-hz">${item.hz_text}</div>
+            </div>
+
+            ${item.mnemonic_logic ? `<div class="mnemonic-box" style="margin-top:10px;"><strong>Mnemonic Link:</strong> ${item.mnemonic_logic}</div>` : ''}
+            ${item.image_url ? `<img src="${item.image_url}" alt="${item.title}" class="entry-img" style="margin-top:10px;" />` : ''}
+          </div>
+
+          <div>
+            <div class="stats-row" style="margin-bottom:10px;">
+              <span>📌 Citations: <strong>${item.citations_count}</strong></span>
+              <span>👍 Endorsements: <strong>${item.endorsements_count}</strong></span>
+              <span>✏️ Edits: <strong>${item.edit_count}</strong></span>
+              ${item.error_reports_count > 0 ? `<span style="color:var(--danger);">⚠️ Reports: ${item.error_reports_count}</span>` : ''}
+            </div>
+
+            <div class="action-row">
+              <button class="btn-pill btn-outline btn-sm" onclick="interact('${item.id}', 'endorse')">👍 Endorse</button>
+              <button class="btn-pill btn-outline btn-sm" onclick="interact('${item.id}', 'brilliant')">🎯 Brilliant (+2)</button>
+              <button class="btn-pill btn-primary btn-sm" onclick="interact('${item.id}', 'cite')">📌 Cite in Class</button>
+              <button class="btn-pill btn-outline btn-sm" onclick="openEditModal(${idx})">✏️ Suggest Fix</button>
+              ${item.target_word ? `<button class="btn-pill btn-outline btn-sm" onclick="openPublishModal('${item.target_word}')">🌱 + Fork "${item.target_word}"</button>` : ''}
+              <button class="btn-pill btn-outline btn-sm" style="color:var(--danger);" onclick="interact('${item.id}', 'report_error')">⚠️ Report</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterByWord(word) {
+      document.getElementById('targetWordInput').value = word;
+      loadEntries();
+    }
+
+    async function interact(articleId, action) {
+      const res = await TM_API.interactLibrary({
+        articleId,
+        action,
+        userId: currentMentor.id,
+        userRole: 'tutor'
+      });
+
+      if (res && res.ok) {
+        if (res.promoted) {
+          alert('🎉 Milestone reached (5+ citations, 10+ endorsements, 0 errors)! This work has graduated to the Official Graded Library!');
+        } else if (action === 'cite') {
+          alert('📌 Cited! Added to your teaching toolkit and logged for the author’s Monthly Revenue Pool.');
+        }
+        loadEntries();
+      }
+    }
+
+    // Publish / Fork Modal
+    function openPublishModal(forkWord = '') {
+      document.getElementById('pubTargetWord').value = forkWord || '';
+      document.getElementById('publishModalTitle').textContent = forkWord
+        ? `🌱 Fork Alternative Mnemonic for "${forkWord}" (100% Independent Share)`
+        : 'Publish to Mentor Co-Creation Forum';
+      document.getElementById('compressStatus').textContent = '';
+      document.getElementById('publishModal').classList.add('open');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+    }
+
+    async function handleImageCompression(inputEl) {
+      const file = inputEl.files && inputEl.files[0];
+      if (!file) return;
+      const statusEl = document.getElementById('compressStatus');
+      statusEl.textContent = 'Compressing image to WebP in your browser...';
+      try {
+        const webpBlob = await TM_API.compressImageToWebP(file, 1080, 0.75);
+        const origKb = Math.round(file.size / 1024);
+        const newKb = Math.round(webpBlob.size / 1024);
+        statusEl.textContent = `✓ Ready: Compressed from ${origKb} KB → ${newKb} KB (WebP, zero server RAM used).`;
+      } catch (err) {
+        statusEl.textContent = 'Image selected (compression skipped).';
+      }
+    }
+
+    async function submitNewEntry() {
+      if (!document.getElementById('pubLicense').checked) {
+        alert('Please accept the Contributor License Agreement before publishing.');
+        return;
+      }
+
+      const payload = {
+        tutorId: currentMentor.id,
+        authorName: currentMentor.name,
+        entryType: document.getElementById('pubType').value,
+        gradeLevel: document.getElementById('pubGrade').value,
+        targetWord: document.getElementById('pubTargetWord').value.trim(),
+        title: document.getElementById('pubTitle').value.trim(),
+        hz: document.getElementById('pubHz').value.trim(),
+        en: document.getElementById('pubEn').value.trim(),
+        hp: document.getElementById('pubHp').value.trim(),
+        tp: document.getElementById('pubTp').value.trim(),
+        mnemonicLogic: document.getElementById('pubLogic').value.trim(),
+        licenseAgreed: true
+      };
+
+      if (!payload.title || !payload.hz || !payload.en) {
+        alert('Please fill in Title, Chinese Text, and English Translation.');
+        return;
+      }
+
+      const res = await TM_API.publishUgc(payload);
+      if (res && res.ok) {
+        closeModal('publishModal');
+        switchTier('forum');
+        alert('Published to the Mentor Co-Creation Forum with 100% initial author share!');
+      } else {
+        alert('Could not publish right now. Please try again.');
+      }
+    }
+
+    // Substantive Edit Modal
+    function openEditModal(index) {
+      const item = currentEntries[index];
+      if (!item) return;
+      document.getElementById('editArticleId').value = item.id;
+      document.getElementById('editHz').value = item.hz_text || '';
+      document.getElementById('editEn').value = item.en_text || '';
+      document.getElementById('editTp').value = item.tp_text || '';
+      document.getElementById('editHp').value = item.hp_text || '';
+      document.getElementById('editLogic').value = item.mnemonic_logic || '';
+      document.getElementById('editModal').classList.add('open');
+    }
+
+    async function submitSubstantiveEdit() {
+      const payload = {
+        articleId: document.getElementById('editArticleId').value,
+        editorTutorId: currentMentor.id,
+        hz: document.getElementById('editHz').value.trim(),
+        en: document.getElementById('editEn').value.trim(),
+        tp: document.getElementById('editTp').value.trim(),
+        hp: document.getElementById('editHp').value.trim(),
+        mnemonicLogic: document.getElementById('editLogic').value.trim()
+      };
+
+      const res = await TM_API.editLibrary(payload);
+      if (res && res.ok) {
+        closeModal('editModal');
+        alert('✓ Improvement applied! Editor share updated in Cloud D1.');
+        loadEntries();
+      } else {
+        alert('Could not save edit right now.');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadMentorSession();
+      loadEntries();
+    });
+  </script>
+</body>
+</html>
